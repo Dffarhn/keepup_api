@@ -1,7 +1,7 @@
-import { UserAnswerSubKuisioner } from "src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity";
+import { UserAnswerSubKuisioner } from "../../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity";
 import { ExcelReportGenerator } from "./excel-export.strategy";
 import * as ExcelJS from 'exceljs';
-import { TakeKuisioner } from "src/take-kuisioner/entities/take-kuisioner.entity";
+import { TakeKuisioner } from "../..//take-kuisioner/entities/take-kuisioner.entity";
 
 export class ClientExportReportGenerator extends ExcelReportGenerator {
   async generate(doc: any, data: TakeKuisioner): Promise<ExcelJS.Buffer> {

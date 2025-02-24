@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsUUID, ValidateNested } from 'class-validator';
-import { CreateAnswerDto } from 'src/answers/dto/create-answer.dto';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
+import { CreateAnswerDto } from '../../answers/dto/create-answer.dto';
+import { isNotBlank } from '../../common/validatorCustom/isNotBlank.validator';
+import { SubKuisioner } from '../../sub-kuisioner/entities/sub-kuisioner.entity';
 
 export class CreateQuestionDto {
   @IsNotEmpty({ message: 'question is required' })

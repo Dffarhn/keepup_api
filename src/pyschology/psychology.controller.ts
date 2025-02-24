@@ -10,13 +10,13 @@ import {
 } from '@nestjs/common';
 import { PyschologyService } from './pyschology.service';
 import { UpdatePyschologyDto } from './dto/update-pyschology.dto';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { User } from 'src/user/entities/user.entity';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { User } from '../user/entities/user.entity';
 import { PsikologiStatus } from './group/psikologiStatus.enum';
 
 @Controller({ path: 'psychology', version: '1' })

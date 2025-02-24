@@ -3,8 +3,8 @@ import { QuestionsService } from './questions.service';
 import { QuestionsController } from './questions.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Question } from './entities/question.entity';
-import { SubKuisionerModule } from 'src/sub-kuisioner/sub-kuisioner.module';
-import { AnswersModule } from 'src/answers/answers.module';
+import { SubKuisionerModule } from '../sub-kuisioner/sub-kuisioner.module';
+import { AnswersModule } from '../answers/answers.module';
 
 @Module({
   imports: [

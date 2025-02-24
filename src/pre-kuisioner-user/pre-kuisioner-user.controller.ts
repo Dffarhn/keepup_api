@@ -2,14 +2,14 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpStatu
 import { PreKuisionerUserService } from './pre-kuisioner-user.service';
 import { CreatePreKuisionerUserDto } from './dto/create-pre-kuisioner-user.dto';
 import { UpdatePreKuisionerUserDto } from './dto/update-pre-kuisioner-user.dto';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { transformPreKuisionerUserAnswerFromEntity } from 'src/common/function/helper/preKuisionerUserProses.function';
+import { UserId } from '../user/decorator/userId.decorator';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { transformPreKuisionerUserAnswerFromEntity } from '../common/function/helper/preKuisionerUserProses.function';
 
 @Controller({ path: 'pre-kuisioner/user', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

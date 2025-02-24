@@ -3,10 +3,10 @@ import { UpdateUserAnswerKuisionerDto } from './dto/update-user-answer-kuisioner
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAnswerKuisioner } from './entities/user-answer-kuisioner.entity';
 import { QueryRunner, Repository } from 'typeorm';
-import { AnswersService } from 'src/answers/answers.service';
-import { UserAnswerSubKuisionerService } from 'src/user-answer-sub-kuisioner/user-answer-sub-kuisioner.service';
+import { AnswersService } from '../answers/answers.service';
+import { UserAnswerSubKuisionerService } from '../user-answer-sub-kuisioner/user-answer-sub-kuisioner.service';
 import { CreateUserAnswerKuisionerDto } from './dto/create-user-answer-kuisioner.dto';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { UserAnswerSubKuisioner } from '../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
 
 @Injectable()
 export class UserAnswerKuisionerService {

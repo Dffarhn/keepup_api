@@ -1,4 +1,4 @@
-import { Background, PreKuisionerAnswer, ReportData } from "src/take-kuisioner/take-kuisioner.model";
+import { Background, PreKuisionerAnswer, ReportData } from "../../take-kuisioner/take-kuisioner.model";
 import { PDFReportGenerator } from "./pdf-export.strategy";
 
 export class PersonalPDFReportGenerator extends PDFReportGenerator {

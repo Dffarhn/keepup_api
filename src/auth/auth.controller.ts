@@ -13,12 +13,12 @@ import {
   Headers,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { ResponseApi } from '../common/response/responseApi.format';
 import { Response } from 'express';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { RefreshTokenGuard } from 'src/jwt/guards/jwt-refresh.guard';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { UserId } from '../user/decorator/userId.decorator';
+import { RefreshTokenGuard } from '../jwt/guards/jwt-refresh.guard';
 import { RegisterResponseDTO } from './dto/response/registerResponse.dto';
 import { LoginResponseDTO } from './dto/response/loginResponse.dto';
 import { RefreshResponseDTO } from './dto/response/refreshResponse.dto';

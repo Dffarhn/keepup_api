@@ -1,5 +1,5 @@
-import { Answer } from 'src/answers/entities/answer.entity';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { Answer } from '../../answers/entities/answer.entity';
+import { UserAnswerSubKuisioner } from '../../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
 import { ManyToOne, PrimaryGeneratedColumn, Entity } from 'typeorm';
 
 @Entity()

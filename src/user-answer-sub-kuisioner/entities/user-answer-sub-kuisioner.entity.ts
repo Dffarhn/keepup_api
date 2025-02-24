@@ -1,4 +1,4 @@
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
+import { TakeKuisioner } from '../../take-kuisioner/entities/take-kuisioner.entity';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -7,8 +7,8 @@ import {
   Entity,
 } from 'typeorm';
 import { Level } from '../group/level.enum';
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
-import { UserAnswerKuisioner } from 'src/user-answer-kuisioner/entities/user-answer-kuisioner.entity';
+import { SubKuisioner } from '../../sub-kuisioner/entities/sub-kuisioner.entity';
+import { UserAnswerKuisioner } from '../../user-answer-kuisioner/entities/user-answer-kuisioner.entity';
 
 @Entity()
 export class UserAnswerSubKuisioner {

@@ -1,4 +1,4 @@
-// src/jwt/interfaces/jwt-payload.interface.ts
+// ../jwt/interfaces/jwt-payload.interface.ts
 export interface JwtPayloadInterfaces {
   id: string; // User ID
   user: string; // Username

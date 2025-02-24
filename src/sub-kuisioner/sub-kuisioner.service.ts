@@ -4,11 +4,11 @@ import {
   CreateSubKuisionerDto,
 } from './dto/create-sub-kuisioner.dto';
 import { UpdateSubKuisionerDto } from './dto/update-sub-kuisioner.dto';
-import { KuisionerService } from 'src/kuisioner/kuisioner.service';
+import { KuisionerService } from '../kuisioner/kuisioner.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SubKuisioner } from './entities/sub-kuisioner.entity';
 import { Repository } from 'typeorm';
-import { SymtompsService } from 'src/symtomps/symtomps.service';
+import { SymtompsService } from '../symtomps/symtomps.service';
 
 @Injectable()
 export class SubKuisionerService {

@@ -3,11 +3,11 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Auth } from './entities/auth.entity';
-import { EmailModule } from 'src/email/email.module';
-import { UserModule } from 'src/user/user.module';
-import { RolesModule } from 'src/roles/roles.module';
-import { JwtKeepUpModule } from 'src/jwt/jwt.module';
-import { ClientPsychologistModule } from 'src/client_psychologist/client_psychologist.module';
+import { EmailModule } from '../email/email.module';
+import { UserModule } from '../user/user.module';
+import { RolesModule } from '../roles/roles.module';
+import { JwtKeepUpModule } from '../jwt/jwt.module';
+import { ClientPsychologistModule } from '../client_psychologist/client_psychologist.module';
 
 @Module({
   imports: [

@@ -8,16 +8,16 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { TakeKuisioner } from './entities/take-kuisioner.entity';
 import { Between, Repository } from 'typeorm';
-import { UserService } from 'src/user/user.service';
-import { KuisionerService } from 'src/kuisioner/kuisioner.service';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { UserService } from '../user/user.service';
+import { KuisionerService } from '../kuisioner/kuisioner.service';
+import { UserAnswerSubKuisioner } from '../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
 import { CreateTakeKuisionerResponseDTO } from './dto/response/create-kuisioner-response.dto';
-import { SYMTOMP } from 'src/symtomps/group/symtomp.enum';
-import { PreKuisionerUserService } from 'src/pre-kuisioner-user/pre-kuisioner-user.service';
-import { AikeepUpService } from 'src/aikeep-up/aikeep-up.service';
+import { SYMTOMP } from '../symtomps/group/symtomp.enum';
+import { PreKuisionerUserService } from '../pre-kuisioner-user/pre-kuisioner-user.service';
+import { AikeepUpService } from '../aikeep-up/aikeep-up.service';
 import { Background, ReportData, SymptomResult } from './take-kuisioner.model';
-import { transformPreKuisionerUserAnswerFromEntity } from 'src/common/function/helper/preKuisionerUserProses.function';
-import { transformPreKuisionerUserAnswer, transformUserAnswerSubKuisioner } from 'src/common/function/helper/exportProses.function';
+import { transformPreKuisionerUserAnswerFromEntity } from '../common/function/helper/preKuisionerUserProses.function';
+import { transformPreKuisionerUserAnswer, transformUserAnswerSubKuisioner } from '../common/function/helper/exportProses.function';
 
 @Injectable()
 export class TakeKuisionerService {

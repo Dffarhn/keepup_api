@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
-import { User } from 'src/user/entities/user.entity';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
+import { User } from '../user/entities/user.entity';
 import { Repository } from 'typeorm';
-import { RolesService } from 'src/roles/roles.service';
-import { calculateSymptomScores, processKuisionerData } from 'src/common/function/helper/statistikProses.function';
-import { Gender } from 'src/common/group/gender.enum';
-import { ROLES } from 'src/roles/group/role.enum';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
-import { Level } from 'src/user-answer-sub-kuisioner/group/level.enum';
-import { StatistikKuisioner } from 'src/common/interfaces/StatistikKuisioner.interface';
+import { RolesService } from '../roles/roles.service';
+import { calculateSymptomScores, processKuisionerData } from '../common/function/helper/statistikProses.function';
+import { Gender } from '../common/group/gender.enum';
+import { ROLES } from '../roles/group/role.enum';
+import { UserAnswerSubKuisioner } from '../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { Level } from '../user-answer-sub-kuisioner/group/level.enum';
+import { StatistikKuisioner } from '../common/interfaces/StatistikKuisioner.interface';
 
 @Injectable()
 export class StatistikPsychologyService {

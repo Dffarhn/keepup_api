@@ -3,8 +3,8 @@ import { SubKuisionerService } from './sub-kuisioner.service';
 import { SubKuisionerController } from './sub-kuisioner.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SubKuisioner } from './entities/sub-kuisioner.entity';
-import { KuisionerModule } from 'src/kuisioner/kuisioner.module';
-import { SymtompsModule } from 'src/symtomps/symtomps.module';
+import { KuisionerModule } from '../kuisioner/kuisioner.module';
+import { SymtompsModule } from '../symtomps/symtomps.module';
 
 @Module({
   imports: [

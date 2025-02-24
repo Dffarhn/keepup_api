@@ -2,12 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, UseGu
 import { PreKuisionerQuestionService } from './pre-kuisioner-question.service';
 import { CreatePreKuisionerQuestionDto } from './dto/create-pre-kuisioner-question.dto';
 import { UpdatePreKuisionerQuestionDto } from './dto/update-pre-kuisioner-question.dto';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
 
 @Controller({ path: 'pre-kuisioner/question', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

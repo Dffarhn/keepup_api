@@ -5,12 +5,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ROLES } from 'src/roles/group/role.enum';
-import { RolesService } from 'src/roles/roles.service';
-import { User } from 'src/user/entities/user.entity';
-import { PsikologiStatus } from 'src/pyschology/group/psikologiStatus.enum';
+import { ROLES } from '../roles/group/role.enum';
+import { RolesService } from '../roles/roles.service';
+import { User } from '../user/entities/user.entity';
+import { PsikologiStatus } from '../pyschology/group/psikologiStatus.enum';
 import { Repository } from 'typeorm';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
 
 @Injectable()
 export class PyschologyService {

@@ -5,8 +5,8 @@ import {
 } from './create-question.dto';
 import { Type } from 'class-transformer';
 import { ValidateNested, IsArray, IsOptional } from 'class-validator';
-import { CreateAnswerDto } from 'src/answers/dto/create-answer.dto';
-import { UpdateAnswerDto } from 'src/answers/dto/update-answer.dto';
+import { CreateAnswerDto } from '../../answers/dto/create-answer.dto';
+import { UpdateAnswerDto } from '../../answers/dto/update-answer.dto';
 
 export class UpdateQuestionDto extends PartialType(CreateQuestionDto) {}
 

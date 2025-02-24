@@ -2,13 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUID
 import { PreKuisionerUserAnswerService } from './pre-kuisioner-user-answer.service';
 import { BodyCreatePreKuisionerUserAnswerDto, } from './dto/create-pre-kuisioner-user-answer.dto';
 import { UpdatePreKuisionerUserAnswerDto } from './dto/update-pre-kuisioner-user-answer.dto';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { UserId } from 'src/user/decorator/userId.decorator';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { UserId } from '../user/decorator/userId.decorator';
 
 @Controller({ path: 'pre-kuisioner/user/answer', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
-import { Kuisioner } from 'src/kuisioner/entity/kuisioner.entity';
-import { Symtomp } from 'src/symtomps/entities/symtomp.entity';
+import { isNotBlank } from '../../common/validatorCustom/isNotBlank.validator';
+import { Kuisioner } from '../../kuisioner/entity/kuisioner.entity';
+import { Symtomp } from '../../symtomps/entities/symtomp.entity';
 
 export class CreateSubKuisionerDto {
   @IsNotEmpty({ message: 'title is required' })

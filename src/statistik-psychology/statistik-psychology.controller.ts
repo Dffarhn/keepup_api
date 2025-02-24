@@ -1,13 +1,13 @@
 import { Controller, Get, UseGuards, HttpStatus } from '@nestjs/common';
 import { StatistikPsychologyService } from './statistik-psychology.service';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { SummaryKuisionerService } from 'src/sumary_kuisioner/summary-kuisioner.service';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { UserId } from '../user/decorator/userId.decorator';
+import { SummaryKuisionerService } from '../sumary_kuisioner/summary-kuisioner.service';
 
 @Controller({ path: "statistik/psychology", version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

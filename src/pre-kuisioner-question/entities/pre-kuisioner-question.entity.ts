@@ -1,5 +1,5 @@
-import { PreKuisionerAnswer } from "src/pre-kuisioner-answer/entities/pre-kuisioner-answer.entity";
-import { PreKuisionerCategory } from "src/pre-kuisioner-category/entities/pre-kuisioner-category.entity";
+import { PreKuisionerAnswer } from "../../pre-kuisioner-answer/entities/pre-kuisioner-answer.entity";
+import { PreKuisionerCategory } from "../../pre-kuisioner-category/entities/pre-kuisioner-category.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('pre_kuisioner_question')

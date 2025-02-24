@@ -4,8 +4,8 @@ import { UpdatePreKuisionerAnswerDto } from './dto/update-pre-kuisioner-answer.d
 import { InjectRepository } from '@nestjs/typeorm';
 import { PreKuisionerAnswer } from './entities/pre-kuisioner-answer.entity';
 import { In, Repository } from 'typeorm';
-import { PreKuisionerQuestion } from 'src/pre-kuisioner-question/entities/pre-kuisioner-question.entity';
-import { BodyCreatePreKuisionerUserAnswerDto, CreatePreKuisionerUserAnswerDto } from 'src/pre-kuisioner-user-answer/dto/create-pre-kuisioner-user-answer.dto';
+import { PreKuisionerQuestion } from '../pre-kuisioner-question/entities/pre-kuisioner-question.entity';
+import { BodyCreatePreKuisionerUserAnswerDto, CreatePreKuisionerUserAnswerDto } from '../pre-kuisioner-user-answer/dto/create-pre-kuisioner-user-answer.dto';
 
 @Injectable()
 export class PreKuisionerAnswerService {

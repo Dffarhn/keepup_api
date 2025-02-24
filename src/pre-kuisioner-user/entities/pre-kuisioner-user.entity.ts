@@ -1,5 +1,5 @@
-import { PreKuisionerUserAnswer } from 'src/pre-kuisioner-user-answer/entities/pre-kuisioner-user-answer.entity';
-import { User } from 'src/user/entities/user.entity';
+import { PreKuisionerUserAnswer } from '../../pre-kuisioner-user-answer/entities/pre-kuisioner-user-answer.entity';
+import { User } from '../../user/entities/user.entity';
 import {
     Column,
     CreateDateColumn,

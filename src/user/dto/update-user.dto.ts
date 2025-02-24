@@ -10,10 +10,10 @@ import {
   IsUUID,
   Length,
 } from 'class-validator';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
-import { Gender } from 'src/common/group/gender.enum';
-import { Faculty } from 'src/facultys/entities/faculty.entity';
-import { Major } from 'src/major/entities/major.entity';
+import { isNotBlank } from '../../common/validatorCustom/isNotBlank.validator';
+import { Gender } from '../../common/group/gender.enum';
+import { Faculty } from '../../facultys/entities/faculty.entity';
+import { Major } from '../../major/entities/major.entity';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsUUID('4', { message: 'Faculty Id Must be a UUID' })

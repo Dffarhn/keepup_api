@@ -1,6 +1,6 @@
-import { Kuisioner } from 'src/kuisioner/entity/kuisioner.entity';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Kuisioner } from '../../kuisioner/entity/kuisioner.entity';
+import { UserAnswerSubKuisioner } from '../../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { User } from '../../user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

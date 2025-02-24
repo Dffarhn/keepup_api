@@ -7,12 +7,12 @@ import {
 import { CreateClientPsychologistDto } from './dto/create-client_psychologist.dto';
 import { UpdateClientPsychologistDto } from './dto/update-client_psychologist.dto';
 import { QueryRunner, Repository } from 'typeorm';
-import { ROLES } from 'src/roles/group/role.enum';
-import { User } from 'src/user/entities/user.entity';
+import { ROLES } from '../roles/group/role.enum';
+import { User } from '../user/entities/user.entity';
 import { ClientPsychologist } from './entities/client_psychologist.entity';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PyschologyService } from 'src/pyschology/pyschology.service';
+import { PyschologyService } from '../pyschology/pyschology.service';
 
 @Injectable()
 export class ClientPsychologistService {

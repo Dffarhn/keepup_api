@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsUUID, Length } from 'class-validator';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
+import { isNotBlank } from '../../../common/validatorCustom/isNotBlank.validator';
 import { LoginRequestDTO } from './loginRequest.dto';
 
 export class RegisterRequestDTO extends LoginRequestDTO {

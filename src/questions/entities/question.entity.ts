@@ -1,5 +1,5 @@
-import { Answer } from 'src/answers/entities/answer.entity';
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
+import { Answer } from '../../answers/entities/answer.entity';
+import { SubKuisioner } from '../../sub-kuisioner/entities/sub-kuisioner.entity';
 import {
   Column,
   CreateDateColumn,

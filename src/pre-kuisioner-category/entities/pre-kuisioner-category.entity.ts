@@ -1,4 +1,4 @@
-import { PreKuisionerQuestion } from 'src/pre-kuisioner-question/entities/pre-kuisioner-question.entity';
+import { PreKuisionerQuestion } from '../../pre-kuisioner-question/entities/pre-kuisioner-question.entity';
 import {
     Column,
     PrimaryGeneratedColumn,

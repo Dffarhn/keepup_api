@@ -3,7 +3,7 @@ import { Kuisioner } from './entity/kuisioner.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateKuisionerDTO } from './dto/request/createKuisioner.dto';
-import { UpdateAnswerDto } from 'src/answers/dto/update-answer.dto';
+import { UpdateAnswerDto } from '../answers/dto/update-answer.dto';
 import { UpdateKuisionerDTO } from './dto/request/updateKuisioner.dto';
 
 @Injectable()

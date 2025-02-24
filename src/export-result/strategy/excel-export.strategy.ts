@@ -1,6 +1,6 @@
 import * as ExcelJS from 'exceljs';
 import { ExportStrategy } from './export-strategy.interface';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
+import { TakeKuisioner } from '../../take-kuisioner/entities/take-kuisioner.entity';
 
 
 export abstract class ExcelReportGenerator {

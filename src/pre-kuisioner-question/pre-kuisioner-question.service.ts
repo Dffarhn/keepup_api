@@ -3,8 +3,8 @@ import { CreatePreKuisionerQuestionDto } from './dto/create-pre-kuisioner-questi
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { PreKuisionerQuestion } from './entities/pre-kuisioner-question.entity';
 import { DataSource, Repository } from 'typeorm';
-import { PreKuisionerCategoryService } from 'src/pre-kuisioner-category/pre-kuisioner-category.service';
-import { PreKuisionerAnswerService } from 'src/pre-kuisioner-answer/pre-kuisioner-answer.service';
+import { PreKuisionerCategoryService } from '../pre-kuisioner-category/pre-kuisioner-category.service';
+import { PreKuisionerAnswerService } from '../pre-kuisioner-answer/pre-kuisioner-answer.service';
 
 @Injectable()
 export class PreKuisionerQuestionService {

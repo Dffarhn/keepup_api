@@ -2,12 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpStatu
 import { PreKuisionerCategoryService } from './pre-kuisioner-category.service';
 import { CreatePreKuisionerCategoryDto } from './dto/create-pre-kuisioner-category.dto';
 import { UpdatePreKuisionerCategoryDto } from './dto/update-pre-kuisioner-category.dto';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ResponseApi } from '../common/response/responseApi.format';
 
 @Controller({ path: 'pre-kuisioner/category', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

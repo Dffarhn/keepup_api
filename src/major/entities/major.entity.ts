@@ -1,5 +1,5 @@
-import { Faculty } from 'src/facultys/entities/faculty.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Faculty } from '../../facultys/entities/faculty.entity';
+import { User } from '../../user/entities/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('majors')

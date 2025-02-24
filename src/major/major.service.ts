@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Major } from './entities/major.entity';
 import { CreateMajorDTO } from './dto/create-major';
-import { FacultysService } from 'src/facultys/facultys.service';
+import { FacultysService } from '../facultys/facultys.service';
 
 @Injectable()
 export class MajorService {

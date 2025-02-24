@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
-import { StatistikKuisioner } from 'src/common/interfaces/StatistikKuisioner.interface';
+import { StatistikKuisioner } from '../common/interfaces/StatistikKuisioner.interface';
 import {
   Background,
   PreKuisionerAnswer,
   ReportData,
   SymptomResult,
-} from 'src/take-kuisioner/take-kuisioner.model';
+} from '../take-kuisioner/take-kuisioner.model';
 
 @Injectable()
 export class AikeepUpService {

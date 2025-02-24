@@ -15,9 +15,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Question } from './entities/question.entity';
 import { Repository } from 'typeorm';
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
-import { SubKuisionerService } from 'src/sub-kuisioner/sub-kuisioner.service';
-import { AnswersService } from 'src/answers/answers.service';
+import { SubKuisioner } from '../sub-kuisioner/entities/sub-kuisioner.entity';
+import { SubKuisionerService } from '../sub-kuisioner/sub-kuisioner.service';
+import { AnswersService } from '../answers/answers.service';
 import { CreateQuestionInterface } from './interfaces/createQuestion.interface';
 
 @Injectable()

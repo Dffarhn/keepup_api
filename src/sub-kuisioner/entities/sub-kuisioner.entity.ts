@@ -1,6 +1,6 @@
-import { Kuisioner } from 'src/kuisioner/entity/kuisioner.entity';
-import { Question } from 'src/questions/entities/question.entity';
-import { Symtomp } from 'src/symtomps/entities/symtomp.entity';
+import { Kuisioner } from '../../kuisioner/entity/kuisioner.entity';
+import { Question } from '../../questions/entities/question.entity';
+import { Symtomp } from '../../symtomps/entities/symtomp.entity';
 import {
   Column,
   CreateDateColumn,

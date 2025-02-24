@@ -1,4 +1,4 @@
-import { SymptomResult, Background } from "src/take-kuisioner/take-kuisioner.model";
+import { SymptomResult, Background } from "../../../take-kuisioner/take-kuisioner.model";
 
 export function transformUserAnswerSubKuisioner(userAnswerSubKuisioner: any[]): SymptomResult[] {
     // Transform the input array into the desired output structure

@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
+import { isNotBlank } from '../../../common/validatorCustom/isNotBlank.validator';
 
 export class LoginRequestDTO {
   @IsEmail({}, { message: 'Invalid email format' })

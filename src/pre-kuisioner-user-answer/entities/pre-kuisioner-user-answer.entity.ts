@@ -1,5 +1,5 @@
-import { PreKuisionerAnswer } from "src/pre-kuisioner-answer/entities/pre-kuisioner-answer.entity";
-import { PreKuisionerUser } from "src/pre-kuisioner-user/entities/pre-kuisioner-user.entity";
+import { PreKuisionerAnswer } from "../../pre-kuisioner-answer/entities/pre-kuisioner-answer.entity";
+import { PreKuisionerUser } from "../../pre-kuisioner-user/entities/pre-kuisioner-user.entity";
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 

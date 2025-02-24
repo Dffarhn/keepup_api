@@ -11,7 +11,7 @@ import { Request } from 'express';
 import { JwtKeepUpService } from '../jwt.service';
 import { JsonWebTokenError, TokenExpiredError } from '@nestjs/jwt';
 import { IS_VERIFICATION_REQUIRED_KEY } from '../decorator/jwtRoute.decorator';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../../user/user.service';
 import { Reflector } from '@nestjs/core';
 import { JwtPayloadInterfaces } from '../interfaces/jwtPayload.interface';
 

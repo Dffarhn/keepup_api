@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SummaryKuisioner } from './entity/summary-kuisioner.entity';
-import { User } from 'src/user/entities/user.entity';
-import { ROLES } from 'src/roles/group/role.enum';
-import { StatistikSuperadminService } from 'src/statistik-superadmin/statistik-superadmin.service';
-import { StatistikPsychologyService } from 'src/statistik-psychology/statistik-psychology.service';
-import { AikeepUpService } from 'src/aikeep-up/aikeep-up.service';
+import { User } from '../user/entities/user.entity';
+import { ROLES } from '../roles/group/role.enum';
+import { StatistikSuperadminService } from '../statistik-superadmin/statistik-superadmin.service';
+import { StatistikPsychologyService } from '../statistik-psychology/statistik-psychology.service';
+import { AikeepUpService } from '../aikeep-up/aikeep-up.service';
 
 @Injectable()
 export class SummaryKuisionerService {

@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { calculateSymptomScores, processKuisionerData } from 'src/common/function/helper/statistikProses.function';
-import { Gender } from 'src/common/group/gender.enum';
-import { StatistikKuisioner } from 'src/common/interfaces/StatistikKuisioner.interface';
-import { PreKuisionerAnswer } from 'src/pre-kuisioner-answer/entities/pre-kuisioner-answer.entity';
-import { PreKuisionerCategory } from 'src/pre-kuisioner-category/entities/pre-kuisioner-category.entity';
-import { PreKuisionerUserAnswer } from 'src/pre-kuisioner-user-answer/entities/pre-kuisioner-user-answer.entity';
-import { ROLES } from 'src/roles/group/role.enum';
-import { RolesService } from 'src/roles/roles.service';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
-import { UserAnswerSubKuisioner } from 'src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
-import { Level } from 'src/user-answer-sub-kuisioner/group/level.enum';
-import { User } from 'src/user/entities/user.entity';
+import { calculateSymptomScores, processKuisionerData } from '../common/function/helper/statistikProses.function';
+import { Gender } from '../common/group/gender.enum';
+import { StatistikKuisioner } from '../common/interfaces/StatistikKuisioner.interface';
+import { PreKuisionerAnswer } from '../pre-kuisioner-answer/entities/pre-kuisioner-answer.entity';
+import { PreKuisionerCategory } from '../pre-kuisioner-category/entities/pre-kuisioner-category.entity';
+import { PreKuisionerUserAnswer } from '../pre-kuisioner-user-answer/entities/pre-kuisioner-user-answer.entity';
+import { ROLES } from '../roles/group/role.enum';
+import { RolesService } from '../roles/roles.service';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
+import { UserAnswerSubKuisioner } from '../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { Level } from '../user-answer-sub-kuisioner/group/level.enum';
+import { User } from '../user/entities/user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

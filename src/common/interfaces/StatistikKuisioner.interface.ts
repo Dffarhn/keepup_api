@@ -1,4 +1,4 @@
-import { Level } from "src/user-answer-sub-kuisioner/group/level.enum";
+import { Level } from "../../user-answer-sub-kuisioner/group/level.enum";
 
 export interface SymptomScore {
     score: number; // Calculated score for the symptom

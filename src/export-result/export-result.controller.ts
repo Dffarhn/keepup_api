@@ -2,18 +2,18 @@ import { Controller, ForbiddenException, Get, HttpException, HttpStatus, Inject,
 import { Response } from 'express';
 import { ExportResultService } from './export-result.service';
 import { ExportType, ReportType } from './strategy/export-strategy.interface';
-import { TakeKuisionerService } from 'src/take-kuisioner/take-kuisioner.service';
-import { transformPreKuisionerUserAnswerFromEntity } from 'src/common/function/helper/preKuisionerUserProses.function';
-import { ReportData } from 'src/take-kuisioner/take-kuisioner.model';
-import { transformPreKuisionerUserAnswer, transformUserAnswerSubKuisioner } from 'src/common/function/helper/exportProses.function';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { RoleId } from 'src/roles/decorators/roleId.decorator';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
+import { TakeKuisionerService } from '../take-kuisioner/take-kuisioner.service';
+import { transformPreKuisionerUserAnswerFromEntity } from '../common/function/helper/preKuisionerUserProses.function';
+import { ReportData } from '../take-kuisioner/take-kuisioner.model';
+import { transformPreKuisionerUserAnswer, transformUserAnswerSubKuisioner } from '../common/function/helper/exportProses.function';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { RoleId } from '../roles/decorators/roleId.decorator';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
+import { UserId } from '../user/decorator/userId.decorator';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
 
 @Controller({ path: 'export', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

@@ -1,5 +1,4 @@
-import { Auth } from 'src/auth/entities/auth.entity';
-import { Faculty } from 'src/facultys/entities/faculty.entity';
+import { Auth } from '../../auth/entities/auth.entity';
 import {
   IsEmail,
   IsNotEmpty,
@@ -10,10 +9,9 @@ import {
   IsEnum,
   IsDateString,
 } from 'class-validator';
-import { Gender } from 'src/common/group/gender.enum';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
-import { Role } from 'src/roles/entities/role.entity';
-import { PreKuisionerUser } from 'src/pre-kuisioner-user/entities/pre-kuisioner-user.entity';
+import { isNotBlank } from '../../common/validatorCustom/isNotBlank.validator';
+import { Role } from '../../roles/entities/role.entity';
+import { PreKuisionerUser } from '../../pre-kuisioner-user/entities/pre-kuisioner-user.entity';
 
 export class CreateUserDto {
   @IsEmail({}, { message: 'Invalid email format' })

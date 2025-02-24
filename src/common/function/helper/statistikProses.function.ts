@@ -1,7 +1,7 @@
-import { TakeKuisioner } from "src/take-kuisioner/entities/take-kuisioner.entity";
-import { UserAnswerSubKuisioner } from "src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity";
-import { Level } from "src/user-answer-sub-kuisioner/group/level.enum";
-import { SymptomScore } from "src/common/interfaces/StatistikKuisioner.interface";
+import { TakeKuisioner } from "../../../take-kuisioner/entities/take-kuisioner.entity";
+import { UserAnswerSubKuisioner } from "../../../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity";
+import { Level } from "../../../user-answer-sub-kuisioner/group/level.enum";
+import { SymptomScore } from "../../../common/interfaces/StatistikKuisioner.interface";
 
 // Helper function to process Kuisioner data and populate statistics
 export function processKuisionerData(data: TakeKuisioner[]): Record<string, { VeryLow?: number, Low: number; Intermediate: number; High: number, VeryHigh: number }[]> {

@@ -1,21 +1,21 @@
 import { Body, Controller, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { RolesGuard } from 'src/roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { RolesGuard } from '../roles/guards/role.guard';
 import { AikeepUpDto } from './dto/aikeep-up.dto';
 import {
   transformPreKuisionerUserAnswer,
   transformUserAnswerSubKuisioner,
-} from 'src/common/function/helper/exportProses.function';
-import { transformPreKuisionerUserAnswerFromEntity } from 'src/common/function/helper/preKuisionerUserProses.function';
-import { ReportData } from 'src/take-kuisioner/take-kuisioner.model';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
+} from '../common/function/helper/exportProses.function';
+import { transformPreKuisionerUserAnswerFromEntity } from '../common/function/helper/preKuisionerUserProses.function';
+import { ReportData } from '../take-kuisioner/take-kuisioner.model';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
 import { AikeepUpService } from './aikeep-up.service';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { ResponseApi } from '../common/response/responseApi.format';
 
 @Controller({ path: 'ai', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

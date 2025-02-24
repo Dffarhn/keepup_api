@@ -1,7 +1,7 @@
-import { Auth } from 'src/auth/entities/auth.entity';
-import { ClientPsychologist } from 'src/client_psychologist/entities/client_psychologist.entity';
-import { Faculty } from 'src/facultys/entities/faculty.entity';
-import { Role } from 'src/roles/entities/role.entity';
+import { Auth } from '../../auth/entities/auth.entity';
+import { ClientPsychologist } from '../../client_psychologist/entities/client_psychologist.entity';
+import { Faculty } from '../../facultys/entities/faculty.entity';
+import { Role } from '../../roles/entities/role.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -14,9 +14,9 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { PsikologiStatus } from '../../pyschology/group/psikologiStatus.enum';
-import { PreKuisionerUser } from 'src/pre-kuisioner-user/entities/pre-kuisioner-user.entity';
-import { SummaryKuisioner } from 'src/sumary_kuisioner/entity/summary-kuisioner.entity';
-import { Major } from 'src/major/entities/major.entity';
+import { PreKuisionerUser } from '../../pre-kuisioner-user/entities/pre-kuisioner-user.entity';
+import { SummaryKuisioner } from '../../sumary_kuisioner/entity/summary-kuisioner.entity';
+import { Major } from '../../major/entities/major.entity';
 
 @Entity('userEminds')
 export class User {

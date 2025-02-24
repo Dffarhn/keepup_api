@@ -17,13 +17,13 @@ import {
   CreateSubKuisionerDto,
 } from './dto/create-sub-kuisioner.dto';
 import { UpdateSubKuisionerDto } from './dto/update-sub-kuisioner.dto';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { ResponseApi } from '../common/response/responseApi.format';
 import { SubKuisioner } from './entities/sub-kuisioner.entity';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 

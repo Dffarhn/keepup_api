@@ -10,11 +10,11 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAnswerSubKuisioner } from './entities/user-answer-sub-kuisioner.entity';
 import { DataSource, Repository } from 'typeorm';
-import { TakeKuisionerService } from 'src/take-kuisioner/take-kuisioner.service';
-import { SubKuisionerService } from 'src/sub-kuisioner/sub-kuisioner.service';
-import { UserAnswerKuisionerService } from 'src/user-answer-kuisioner/user-answer-kuisioner.service';
+import { TakeKuisionerService } from '../take-kuisioner/take-kuisioner.service';
+import { SubKuisionerService } from '../sub-kuisioner/sub-kuisioner.service';
+import { UserAnswerKuisionerService } from '../user-answer-kuisioner/user-answer-kuisioner.service';
 import { CreateUserAnswerSubKuisionerDTO } from './dto/request/create-user-answer-sub-kuisioner.dto';
-import { SYMTOMP } from 'src/symtomps/group/symtomp.enum';
+import { SYMTOMP } from '../symtomps/group/symtomp.enum';
 import { Level } from './group/level.enum';
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AikeepUpService } from './aikeep-up.service';
 import { ConfigModule } from '@nestjs/config';
-import aiConfig from 'src/config/ai.config';
-import { validationSchema } from 'src/config/validation.schema';
+import aiConfig from '../config/ai.config';
+import { validationSchema } from '../config/validation.schema';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TakeKuisioner } from 'src/take-kuisioner/entities/take-kuisioner.entity';
+import { TakeKuisioner } from '../take-kuisioner/entities/take-kuisioner.entity';
 import { AIkeepUpController } from './aikeep-up.controller';
 
 @Module({

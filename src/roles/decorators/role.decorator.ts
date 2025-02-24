@@ -1,4 +1,4 @@
-// src/jwt/decorators/roles.decorator.ts
+// ../jwt/decorators/roles.decorator.ts
 import { SetMetadata } from '@nestjs/common';
 import { ROLES } from '../group/role.enum';
 

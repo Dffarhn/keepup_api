@@ -14,19 +14,19 @@ import {
   Patch,
 } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
 import { Question } from './entities/question.entity';
 import { BodyCreateQuestionDto } from './dto/create-question.dto';
 import { CreateQuestionInterface } from './interfaces/createQuestion.interface';
 import { BodyUpdateQuestionDto } from './dto/update-question.dto';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
+import { SubKuisioner } from '../sub-kuisioner/entities/sub-kuisioner.entity';
 
 @Controller({ path: 'questions', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

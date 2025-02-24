@@ -4,12 +4,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { FacultysService } from 'src/facultys/facultys.service';
-import { ROLES } from 'src/roles/group/role.enum';
+import { FacultysService } from '../facultys/facultys.service';
+import { ROLES } from '../roles/group/role.enum';
 import { PsikologiStatus } from '../pyschology/group/psikologiStatus.enum';
-import { Auth } from 'src/auth/entities/auth.entity';
-import { Major } from 'src/major/entities/major.entity';
-import { MajorService } from 'src/major/major.service';
+import { Auth } from '../auth/entities/auth.entity';
+import { Major } from '../major/entities/major.entity';
+import { MajorService } from '../major/major.service';
 
 @Injectable()
 export class UserService {

@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { isNotBlank } from 'src/common/validatorCustom/isNotBlank.validator';
+import { isNotBlank } from '../../common/validatorCustom/isNotBlank.validator';
 
 export class CreateAnswerDto {
   @IsString({ message: 'answer must be a string' })

@@ -8,13 +8,13 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { UserId } from '../user/decorator/userId.decorator';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
 import { MajorService } from './major.service';
 import { Major } from './entities/major.entity';
 import { CreateMajorDTO } from './dto/create-major';

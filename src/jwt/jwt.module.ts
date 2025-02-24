@@ -1,12 +1,12 @@
-// src/jwt/jwt.module.ts
+// ../jwt/jwt.module.ts
 import { Global, Module } from '@nestjs/common';
 import { JwtModule as NestJwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import jwtConfig from 'src/config/jwt.config'; // Adjust import path as necessary
-import { validationSchema } from 'src/config/validation.schema'; // Adjust import path as necessary
+import jwtConfig from '../config/jwt.config'; // Adjust import path as necessary
+import { validationSchema } from '../config/validation.schema'; // Adjust import path as necessary
 import { JwtKeepUpService } from './jwt.service';
 import { PassportModule } from '@nestjs/passport';
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from '../user/user.module';
 
 @Global()
 @Module({

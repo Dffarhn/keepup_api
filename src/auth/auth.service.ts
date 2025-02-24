@@ -10,28 +10,28 @@ import {
   Res,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/entities/user.entity';
+import { User } from '../user/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { Auth } from './entities/auth.entity';
 import { randomUUID } from 'crypto';
-import { EmailService } from 'src/email/email.service';
-import { UserService } from 'src/user/user.service';
+import { EmailService } from '../email/email.service';
+import { UserService } from '../user/user.service';
 import {
   comparePasswords,
   hashPassword,
-} from 'src/common/function/password.function';
-import { RolesService } from 'src/roles/roles.service';
-import { JwtKeepUpService } from 'src/jwt/jwt.service';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { JwtPayloadInterfaces } from 'src/jwt/interfaces/jwtPayload.interface';
+} from '../common/function/password.function';
+import { RolesService } from '../roles/roles.service';
+import { JwtKeepUpService } from '../jwt/jwt.service';
+import { UserId } from '../user/decorator/userId.decorator';
+import { JwtPayloadInterfaces } from '../jwt/interfaces/jwtPayload.interface';
 import { RegisterRequestDTO } from './dto/request/registerRequest.dto';
 import { LoginRequestDTO } from './dto/request/loginRequest.dto';
-import { ROLES } from 'src/roles/group/role.enum';
-import { PsikologiStatus } from 'src/pyschology/group/psikologiStatus.enum';
-import { ClientPsychologistService } from 'src/client_psychologist/client_psychologist.service';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { CreatePyschologyDto } from 'src/pyschology/dto/create-pyschology.dto';
-import { PreKuisionerUser } from 'src/pre-kuisioner-user/entities/pre-kuisioner-user.entity';
+import { ROLES } from '../roles/group/role.enum';
+import { PsikologiStatus } from '../pyschology/group/psikologiStatus.enum';
+import { ClientPsychologistService } from '../client_psychologist/client_psychologist.service';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { CreatePyschologyDto } from '../pyschology/dto/create-pyschology.dto';
+import { PreKuisionerUser } from '../pre-kuisioner-user/entities/pre-kuisioner-user.entity';
 
 @Injectable()
 export class AuthService {

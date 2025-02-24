@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { validationSchema } from 'src/config/validation.schema';
-import databaseConfig from 'src/config/database.config';
+import { validationSchema } from '../config/validation.schema';
+import databaseConfig from '../config/database.config';
 
 @Module({
   imports: [

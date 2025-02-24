@@ -1,13 +1,13 @@
 import { Controller, Get, HttpStatus, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { StatistikSuperadminService } from './statistik-superadmin.service';
-import { IsVerificationRequired } from 'src/jwt/decorator/jwtRoute.decorator';
-import { JwtAuthGuard } from 'src/jwt/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/roles/guards/role.guard';
-import { Roles } from 'src/roles/decorators/role.decorator';
-import { ROLES } from 'src/roles/group/role.enum';
-import { ResponseApi } from 'src/common/response/responseApi.format';
-import { UserId } from 'src/user/decorator/userId.decorator';
-import { SummaryKuisionerService } from 'src/sumary_kuisioner/summary-kuisioner.service';
+import { IsVerificationRequired } from '../jwt/decorator/jwtRoute.decorator';
+import { JwtAuthGuard } from '../jwt/guards/jwt-auth.guard';
+import { RolesGuard } from '../roles/guards/role.guard';
+import { Roles } from '../roles/decorators/role.decorator';
+import { ROLES } from '../roles/group/role.enum';
+import { ResponseApi } from '../common/response/responseApi.format';
+import { UserId } from '../user/decorator/userId.decorator';
+import { SummaryKuisionerService } from '../sumary_kuisioner/summary-kuisioner.service';
 
 @Controller({ path: 'statistik/superAdmin', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)

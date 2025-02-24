@@ -1,4 +1,4 @@
-import { PreKuisionerUser } from "src/pre-kuisioner-user/entities/pre-kuisioner-user.entity";
+import { PreKuisionerUser } from "../../../pre-kuisioner-user/entities/pre-kuisioner-user.entity";
 
 
 export function transformPreKuisionerUserAnswerFromEntity(userWithAnswers: PreKuisionerUser) {

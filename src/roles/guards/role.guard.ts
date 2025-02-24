@@ -1,4 +1,4 @@
-// src/jwt/guards/roles.guard.ts
+// ../jwt/guards/roles.guard.ts
 import {
   Injectable,
   CanActivate,
@@ -6,7 +6,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { ROLES_KEY } from 'src/roles/decorators/role.decorator';
+import { ROLES_KEY } from '../../roles/decorators/role.decorator';
 import { ROLES } from '../group/role.enum';
 
 @Injectable()

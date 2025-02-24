@@ -1,4 +1,4 @@
-import { ReportData } from "src/take-kuisioner/take-kuisioner.model";
+import { ReportData } from "../../../take-kuisioner/take-kuisioner.model";
 
 export class CreateTakeKuisionerResponseDTO {
   id_takeKuisioner: string;

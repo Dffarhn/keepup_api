@@ -1,4 +1,4 @@
-import { SubKuisioner } from 'src/sub-kuisioner/entities/sub-kuisioner.entity';
+import { SubKuisioner } from '../../sub-kuisioner/entities/sub-kuisioner.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('symtomps')
