@@ -7,7 +7,7 @@ import {
 import * as brevo from '@getbrevo/brevo';
 import { ConfigService } from '@nestjs/config';
 import { TransactionalEmailsApi } from '@getbrevo/brevo';
-import { generateConfirmationEmailContent } from 'src/common/function/generatorEmail.function';
+import { generateConfirmationEmailContent } from 'src/common/function/generatorEmail';
 
 @Injectable()
 export class EmailService {
