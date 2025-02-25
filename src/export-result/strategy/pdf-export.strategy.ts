@@ -1,4 +1,4 @@
-import * as PDFDocument from 'pdfkit';
+import PDFDocument from 'pdfkit';
 import { ExportStrategy } from './export-strategy.interface';
 
 // Abstract class for PDF
