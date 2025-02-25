@@ -20,7 +20,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
             .text(`Name: ${data.user.username}`)
             .text(`NIM: ${data.user.nim}`)
             .text(`Semester: ${(((new Date().getFullYear() - data.user.yearEntry) * 2) + (new Date().getMonth() >= 6 ? 1 : 0))}`)
-            .text(`Fakultas: ${data.user.faculty.name}||tes`)
+            .text(`Fakultas: ${data.user.faculty.name||"test"}`)
             .moveDown(2); // Increase spacing after personal info
 
         // Background
@@ -54,7 +54,9 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
 
                 // Render answer
                 doc
+                    .font('Helvetica-Bold') // Bold font for answer
                     .text(`  ${answer.answer}`, 50, doc.y, { indent: 50 }) // Indent answer slightly more than the question
+                    .font('Helvetica') // Reset font for next question
                     .moveDown(0.5);
             });
             // Extra spacing after each category
@@ -89,15 +91,35 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
 
         // Table Rows
         tableY += 25; // Adjust position for rows
+        const levelColors: { [key: string]: string } = {
+            "very low": "#d4edda",
+            "low": "#cce5ff",
+            "intermediate": "#fff3cd",
+            "high": "#f8d7da",
+            "very high": "#f5c6cb"
+        };
+        
         results.forEach((result) => {
+            const bgColor = levelColors[result.level.toLowerCase()] || "#ffffff"; // Default to white
+        
+            // Draw row background color BEFORE adding text
             doc
+                .save() // Save current drawing state
                 .rect(tableX, tableY, doc.page.width - 100, 20)
-                .stroke()
+                .fill(bgColor)
+                .restore(); // Restore previous drawing state (prevents issues with stroke)
+        
+            // Set text color to black for contrast
+            doc.fillColor("#000000");
+        
+            // Draw text inside the table
+            doc
                 .text(result.nameSymtomp, tableX + 10, tableY + 5, { width: 150 })
                 .text(result.level, tableX + 180, tableY + 5, { width: 100 })
                 .text(result.score.toString(), tableX + 300, tableY + 5, { width: 100 });
+        
             tableY += 20;
-        });
+        });          
 
 
         // Report Section
