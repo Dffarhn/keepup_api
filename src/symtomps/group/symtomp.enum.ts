@@ -4,4 +4,5 @@ export enum SYMTOMP {
   PROKRASTINASI = 'Prokrastinasi',
   STRESS = 'Stress',
   KECANDUAN_PONSEL = 'Kecanduan Ponsel',
+  REGULASI_DIRI = 'Regulasi Diri'
 }

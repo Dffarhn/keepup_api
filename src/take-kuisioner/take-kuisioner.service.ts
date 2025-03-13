@@ -15,7 +15,7 @@ import { CreateTakeKuisionerResponseDTO } from './dto/response/create-kuisioner-
 import { SYMTOMP } from '../symtomps/group/symtomp.enum';
 import { PreKuisionerUserService } from '../pre-kuisioner-user/pre-kuisioner-user.service';
 import { AikeepUpService } from '../aikeep-up/aikeep-up.service';
-import { Background, ReportData, SymptomResult } from './take-kuisioner.model';
+import { Background, ReportData} from './take-kuisioner.model';
 import { transformPreKuisionerUserAnswerFromEntity } from '../common/function/helper/preKuisionerUserProses.function';
 import { transformPreKuisionerUserAnswer, transformUserAnswerSubKuisioner } from '../common/function/helper/exportProses.function';
 
@@ -239,7 +239,10 @@ export class TakeKuisionerService {
         'user.preKuisioner.preKuisionerUserAnswer.preKuisionerAnswer.preQuestionId.category',
         'userAnswerSubKuisioner',
         'userAnswerSubKuisioner.subKuisioner',
-        'userAnswerSubKuisioner.subKuisioner.symtompId'
+        'userAnswerSubKuisioner.subKuisioner.symtompId',
+        'userAnswerSubKuisioner.userAnswerKuisioners.answer',
+        'userAnswerSubKuisioner.userAnswerKuisioners.answer.questionId'
+
       ],
     });
 

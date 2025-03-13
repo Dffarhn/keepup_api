@@ -1,12 +1,18 @@
+import { UserAnswerSubKuisioner } from "src/user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity";
 import { SymptomResult, Background } from "../../../take-kuisioner/take-kuisioner.model";
 
-export function transformUserAnswerSubKuisioner(userAnswerSubKuisioner: any[]): SymptomResult[] {
+export function transformUserAnswerSubKuisioner(userAnswerSubKuisioner: UserAnswerSubKuisioner[]): SymptomResult[] {
     // Transform the input array into the desired output structure
     const transformed = userAnswerSubKuisioner.map((item) => {
         return {
             nameSymtomp: item.subKuisioner.symtompId.name,
             level: item.level,
-            score: item.score
+            score: item.score,
+            userAnswerKuisioner: item.userAnswerKuisioners.map((answerItem) => ({
+                answer: answerItem.answer.answer,
+                question: answerItem.answer.questionId.question,
+                score: answerItem.answer.score // Ensure score is included
+            }))
         };
     });
 

@@ -105,7 +105,7 @@ export class AikeepUpService {
   async generateReport(data: ReportData): Promise<string> {
     try {
       const gptPrompt = `
-      Buatkan laporan psikologi hasil skrining kesehatan mental mahasiswa.  Skrining terdiri dari data stres, depresi, kecemasan skala DASS.  Ditambah data kuesioner prokrastinasi akademik dan kecanduan ponsel.  Buat laporan dengan bahasa yang mudah dipahami orang awam dengan elemen: deskripsi kondisi mahasiswa, dampaknya bagi mahasiswa, rekomendasi singkat apa yang perlu dilakukan mahasiswa tersebut. Buat laporan maksimal 1 halaman.
+      Buatkan laporan psikologi hasil skrining kesehatan mental mahasiswa.  Skrining terdiri dari data stres, depresi, kecemasan skala DASS.  Ditambah data kuesioner prokrastinasi akademik dan kecanduan ponsel serta data tentang regulasi diri.  Buat laporan dengan bahasa yang mudah dipahami orang awam dengan elemen: deskripsi kondisi mahasiswa, dampaknya bagi mahasiswa, rekomendasi singkat apa yang perlu dilakukan mahasiswa tersebut. Buat laporan maksimal 1 halaman.
       
       Buat analisis psikologis dalam bahasa Indonesia berdasarkan data yang disediakan di bawah ini. Analisis harus disusun seperti bercerita tentang apa yang terjadi pada individu. Gunakan gaya bahasa yang santai namun tetap informatif, sehingga pembaca merasa terhubung dengan isi. Hasil analisis harus berupa teks biasa tanpa format khusus, disusun dalam dua paragraf untuk setiap gejala:
       - Paragraf pertama: Ceritakan secara naratif tentang apa yang dialami individu berdasarkan skor dan tingkatannya.
@@ -121,7 +121,7 @@ export class AikeepUpService {
       3. Akhiri dengan bagian "Kesimpulan" yang merangkum analisis keseluruhan dan langkah yang disarankan.
 
       ### Format Data:
-      1. *Gejala* meliputi "Depresi", "Kecemasan", "Stres", "Prokrastinasi", dan "Kecanduan Ponsel".
+      1. *Gejala* meliputi "Depresi", "Kecemasan", "Stres", "Prokrastinasi", "Kecanduan Ponsel", dan "Regulasi Diri".
       2. Berikan analisis untuk setiap gejala meskipun rekomendasi tertentu tidak dapat diberikan.
 
       ### Data untuk Analisis:
@@ -145,9 +145,18 @@ export class AikeepUpService {
       ${data.result
         .map(
           (item) => `
-        - Nama: ${item.nameSymtomp}
-        - Tingkat: ${item.level}
-        - Skor: ${item.score}`,
+      - Nama: ${item.nameSymtomp}
+      - Tingkat: ${item.level}
+      - Skor: ${item.score}
+      - Jawaban:
+      ${item.userAnswerKuisioner
+        .map(
+          (answer) => `  * Pertanyaan: ${answer.question}
+          * Jawaban: ${answer.answer}
+          * Skor: ${answer.score}`,
+        )
+        .join('\n')}
+      `,
         )
         .join('\n')}
 
@@ -163,11 +172,17 @@ export class AikeepUpService {
           
       Kecanduan Ponsel
       Kecanduan ponsel yang berada pada kategori sedang, hal ini berisiko mengganggu waktu produktif klien, mengurangi efisiensi belajar, serta memengaruhi kualitas interaksi sosial. Ketergantungan pada ponsel juga dapat meningkatkan prokrastinasi, karena waktu yang dihabiskan untuk penggunaan ponsel dapat mengalihkan fokus dari tugas-tugas penting, dan pada akhirnya meningkatkan tingkat stres.
+
+      Regulasi Diri
+      Jika mahasiswa mengalami kesulitan dalam mengelola emosinya atau mengatur waktunya, hal ini bisa memengaruhi kesejahteraan mental dan performa akademiknya. Mohon berikan analisis singkat tentang bagaimana mahasiswa bisa meningkatkan regulasi diri berdasarkan gejala yang telah diidentifikasi berdasarkan data yang telah saya berikan.
+
           
       Kesimpulan
       Secara keseluruhan, kondisi mental yang dialami oleh klien menunjukkan perlunya intervensi menyeluruh. Kombinasi dari konseling psikologis, pelatihan manajemen waktu, dan strategi coping dapat membantu klien mengelola gejala secara efektif dan meningkatkan kualitas hidup.
 
       `;
+
+      console.log(gptPrompt)
 
       const gptSystem =
         'You are a highly skilled psychologist specializing in analyzing patient conditions based on questionnaire responses. Your role is to generate detailed, empathetic, and well-structured psychological analysis reports based on the provided data. Your reports should offer in-depth insights into each symptom, its potential effects, and recommendations for intervention, using a formal and empathetic tone suitable for patients and their needs. Please ensure the output is plain text, with no special formatting such as **bold**.';
