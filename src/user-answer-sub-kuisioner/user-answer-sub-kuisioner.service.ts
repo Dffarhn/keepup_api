@@ -141,10 +141,6 @@ export class UserAnswerSubKuisionerService {
     }
   }
 
-  findAll() {
-    return `This action returns all userAnswerSubKuisioner`;
-  }
-
   async findOne(id: string): Promise<UserAnswerSubKuisioner> {
     const data = await this.userAnswerSubKuisionerRepository.findOne({
       where: { id: id },
@@ -157,24 +153,8 @@ export class UserAnswerSubKuisionerService {
     return data;
   }
 
-  update(id: number) {
-    return `This action updates a #${id} userAnswerSubKuisioner`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} userAnswerSubKuisioner`;
-  }
-
   getScoreCategory(symptomName: string, score: number): Level {
-    // Multiply score by 2 for specific symptoms
-    if (
-      symptomName === SYMTOMP.KECEMASAN ||
-      symptomName === SYMTOMP.STRESS ||
-      symptomName === SYMTOMP.DEPRESI ||
-      symptomName === SYMTOMP.REGULASI_DIRI
-    ) {
-      score *= 2; // Double the score for these symptoms
-    }
+    score = this.getAdjustedScore(symptomName, score);
 
     switch (symptomName) {
       case SYMTOMP.KECEMASAN:
@@ -217,13 +197,12 @@ export class UserAnswerSubKuisionerService {
         if (score >= 30) return Level.SUPERHIGH;
         break;
       case SYMTOMP.REGULASI_DIRI:
-        if (score >= 0 && score <= 9) return Level.NORMAL;
-        if (score >= 10 && score <= 13) return Level.LOW;
-        if (score >= 14 && score <= 20) return Level.INTERMEDIATE;
-        if (score >= 21 && score <= 27) return Level.HIGH;
-        if (score > 27) return Level.SUPERHIGH;
+        if (score >= 29 && score <= 46) return Level.VERYLOW;
+        if (score >= 47 && score <= 64) return Level.LOW;
+        if (score >= 65 && score <= 82) return Level.INTERMEDIATE;
+        if (score >= 83 && score <= 100) return Level.HIGH;
+        if (score >= 101) return Level.SUPERHIGH;
         break;
-
       default:
         return Level.NORMAL; // Default if the symptom type is unknown
     }
@@ -234,8 +213,7 @@ export class UserAnswerSubKuisionerService {
     if (
       symptomName === SYMTOMP.KECEMASAN ||
       symptomName === SYMTOMP.STRESS ||
-      symptomName === SYMTOMP.DEPRESI ||
-      symptomName === SYMTOMP.REGULASI_DIRI
+      symptomName === SYMTOMP.DEPRESI
     ) {
       return score * 2;
     }
