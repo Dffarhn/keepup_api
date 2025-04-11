@@ -61,18 +61,18 @@ export class AikeepUpService {
 
     Data Kuisioner:
     ${data.UserSymptomStatistics.map(
-      (kuisioner, index) => `
+        (kuisioner, index) => `
     Responden ${index + 1}:
     - Kuisioner: ${kuisioner.kuisionerName}
     - Gejala yang Teramati:
     ${Object.entries(kuisioner.symptoms)
-      .map(
-        ([symptom, details]) => `
+            .map(
+              ([symptom, details]) => `
         -- ${symptom}: 
           --- Tingkat Keparahan: ${details.level}`,
-      )
-      .join('\n')}`,
-    ).join('\n\n')}
+            )
+            .join('\n')}`,
+      ).join('\n\n')}
 
     Instruksi untuk merangkum:  
     1. Berikan jumlah pengisi.
@@ -104,83 +104,42 @@ export class AikeepUpService {
 
   async generateReport(data: ReportData): Promise<string> {
     try {
-      const gptPrompt = `
-      Buatkan laporan psikologi hasil skrining kesehatan mental mahasiswa.  Skrining terdiri dari data stres, depresi, kecemasan skala DASS.  Ditambah data kuesioner prokrastinasi akademik dan kecanduan ponsel serta data tentang regulasi diri.  Buat laporan dengan bahasa yang mudah dipahami orang awam dengan elemen: deskripsi kondisi mahasiswa, dampaknya bagi mahasiswa, rekomendasi singkat apa yang perlu dilakukan mahasiswa tersebut. Buat laporan maksimal 1 halaman.
-      
-      Buat analisis psikologis dalam bahasa Indonesia berdasarkan data yang disediakan di bawah ini. Analisis harus disusun seperti bercerita tentang apa yang terjadi pada individu. Gunakan gaya bahasa yang santai namun tetap informatif, sehingga pembaca merasa terhubung dengan isi. Hasil analisis harus berupa teks biasa tanpa format khusus, disusun dalam dua paragraf untuk setiap gejala:
-      - Paragraf pertama: Ceritakan secara naratif tentang apa yang dialami individu berdasarkan skor dan tingkatannya.
-      - Paragraf kedua: Berikan rekomendasi praktis yang dapat dilakukan oleh mahasiswa untuk mengelola gejala tersebut.
-
-      Gunakan bahasa Indonesia yang mudah dipahami, tanpa istilah teknis yang rumit. Jika terdapat istilah asing, berikan penjelasan singkat dalam kalimat. Pastikan analisis tetap ringkas, nyaman dibaca, dan terasa seperti percakapan yang hangat namun tetap relevan.
-
-      ### Instruksi:
-      1. Analisis hanya gejala dan hasil yang disediakan dalam bagian "Data". Bagian "Latar Belakang" hanya untuk konteks dan tidak perlu dianalisis.
-      2. Untuk setiap gejala, sediakan:
-        - Penjelasan naratif tentang gejala dan dampaknya (paragraf pertama).
-        - Rekomendasi praktis yang dirancang untuk mahasiswa (paragraf kedua).
-      3. Akhiri dengan bagian "Kesimpulan" yang merangkum analisis keseluruhan dan langkah yang disarankan.
-
-      ### Format Data:
-      1. *Gejala* meliputi "Depresi", "Kecemasan", "Stres", "Prokrastinasi", "Kecanduan Ponsel", dan "Regulasi Diri".
-      2. Berikan analisis untuk setiap gejala meskipun rekomendasi tertentu tidak dapat diberikan.
-
-      ### Data untuk Analisis:
-      Latar Belakang:
-      ${data.background
-        .map(
-          (item) => `
-        - Kategori: ${item.categoryName}
-        ${item.preKuisionerAnswer
+      const gptPrompt =` 
+      Buatkan laporan psikologi hasil asesmen berupa skrining kesehatan mental mahasiswa.  Skrining terdiri dari data stres, depresi, kecemasan dari skala DASS.  Ditambah data skala prokrastinasi akademik, kecanduan ponsel, dan regulasi diri. Selain itu ada data riwayat kesehatan masalah berat, dukungan keluarga, kondisi finansial, masalah dengan dosen/kampus, orangtua, teman, saudara, riwayat apakah pernah alami masalah berat sehingga datang ke psikolog/psikiater. \n
+      Buat laporan dengan bahasa yang mudah dipahami orang awam dengan elemen: deskripsi kondisi mahasiswa, dampaknya bagi mahasiswa, rekomendasi singkat apa yang perlu dilakukan mahasiswa tersebut. Hasil analisis harus berupa teks biasa tanpa format khusus, disusun dalam 5 paragraf.  Gunakan kata sapaan “Kamu”. \n
+      Paragraf pertama menjelaskan tingkat stres, depresi, kecemasan berdasarkan skor yang diperoleh.  Tanpa perlu menuliskan skor. lengkapi dengan elaborasi gejala atau simptom yang muncul.  elaborasi apa dampak dari tingkat stres, depresi, kecemasan itu pada konteks klien sebagai mahasiswa. \n
+      Paragraf kedua menjelaskan tingkat prokrastinasi, kecanduan ponsel, dan regulasi diri berdasarkan skor yang diperoleh.  Lengkapi dengan elaborasi gejala atau simptom yang muncul. Elaborasi apa dampak dari tingkat prokrastinasi, kecanduan ponsel, regulasi diri itu pada konteks klien sebagai mahasiswa. \n
+      Paragraf ketiga menjelaskan faktor resiko kesehatan mental berdasarkan data riwayat kesehatan masalah berat, dukungan keluarga, kondisi finansial, masalah dengan dosen/kampus, orangtua, teman, saudara, riwayat apakah pernah alami masalah berat sehingga datang ke psikolog/psikiater.  Elaborasikan kondisi individu itu dikaitkan dengan ada atau tidaknya resiko masalah kesehatan mental atau faktor protektif yang ada pada konteks klien sebagai mahasiswa. \n
+      Paragraf keempat menjelaskan Kesimpulan secara keseluruhan dengan mempertimbangkan dan integrasikan semua data dari paragraf 1-3 sebelumnya dengan sistematis logis.  Elaborasi keterkaitan semua data itu.  Berikan Kesimpulan akhir seberapa besar resiko muncul masalah kesehatan mental. Bila ada, Apa dampaknya? Berikan subjudul “Kesimpulan” khusus pada paragraf ini. Kata kesimpulan ditulis terpisah dari paragraf 4.  \n
+      Paragraf kelima, menjelaskan rekomendasi yang praktis berdasarkan masalah pada paragraf 1-4 sebelumnya. Tulis dengan panjang kata sekitar 500-600 kata.
+    
+              \n  ### Data untuk Analisis:
+            Latar Belakang:
+            ${data.background
           .map(
-            (dataBackground) => `
-          - Pertanyaan: ${dataBackground.question}
-          - Jawaban: ${dataBackground.answer}`,
+            (item) => `
+              - Kategori: ${item.categoryName}
+              ${item.preKuisionerAnswer
+                .map(
+                  (dataBackground) => `
+                - Pertanyaan: ${dataBackground.question}
+                - Jawaban: ${dataBackground.answer}`,
+                )
+                .join('\n')}
+              `,
           )
           .join('\n')}
-        `,
-        )
-        .join('\n')}
+      
+            Data:
+            ${data.result
+          .map(
+            (item) => `
+              - Nama: ${item.nameSymtomp}
+              - Tingkat: ${item.level}
+              - Skor: ${item.score}`,
+          )
+          .join('\n')}`;
 
-      Data:
-      ${data.result
-        .map(
-          (item) => `
-      - Nama: ${item.nameSymtomp}
-      - Tingkat: ${item.level}
-      - Skor: ${item.score}
-      - Jawaban:
-      ${item.userAnswerKuisioner
-        .map(
-          (answer) => `  * Pertanyaan: ${answer.question}
-          * Jawaban: ${answer.answer}
-          * Skor: ${answer.score}`,
-        )
-        .join('\n')}
-      `,
-        )
-        .join('\n')}
-
-      ### Contoh Tanggapan:
-      Kecemasan
-      Kecemasan dengan skor 25 (kategori sangat tinggi) menandakan bahwa klien mungkin sering mengalami perasaan gelisah, tegang, dan khawatir berlebihan. Dampaknya meliputi gangguan tidur, sulit berkonsentrasi, dan kelelahan mental serta fisik. Direkomendasikan untuk mencoba teknik relaksasi seperti pernapasan dalam, serta konseling untuk menangani penyebab utama kecemasan.
-
-      Stres
-      Stres dengan skor 30 (kategori sangat tinggi) menunjukkan bahwa klien mengalami tekanan emosional yang signifikan, yang dapat memengaruhi kesejahteraan mental dan fisik secara serius. Dampaknya termasuk kelelahan kronis, gangguan tidur, dan kesulitan dalam menyelesaikan tugas-tugas sehari-hari. Tingginya tingkat stres ini juga bisa memperburuk gejala kecemasan dan depresi, serta mengurangi kemampuan klien untuk berfungsi secara efektif dalam konteks akademik dan sosial.
-
-      Prokrastinasi
-      Prokrastinasi yang tinggi pada klien dapat berdampak pada penundaan penyelesaian tugas akademik, yang pada gilirannya meningkatkan stres dan kecemasan. Kebiasaan menunda-nunda ini bisa memicu siklus negatif di mana tugas yang belum terselesaikan menjadi sumber tekanan tambahan, yang pada akhirnya mengurangi produktivitas dan kualitas hasil akademik.
-          
-      Kecanduan Ponsel
-      Kecanduan ponsel yang berada pada kategori sedang, hal ini berisiko mengganggu waktu produktif klien, mengurangi efisiensi belajar, serta memengaruhi kualitas interaksi sosial. Ketergantungan pada ponsel juga dapat meningkatkan prokrastinasi, karena waktu yang dihabiskan untuk penggunaan ponsel dapat mengalihkan fokus dari tugas-tugas penting, dan pada akhirnya meningkatkan tingkat stres.
-
-      Regulasi Diri
-      Jika mahasiswa mengalami kesulitan dalam mengelola emosinya atau mengatur waktunya, hal ini bisa memengaruhi kesejahteraan mental dan performa akademiknya. Mohon berikan analisis singkat tentang bagaimana mahasiswa bisa meningkatkan regulasi diri berdasarkan gejala yang telah diidentifikasi berdasarkan data yang telah saya berikan.
-
-          
-      Kesimpulan
-      Secara keseluruhan, kondisi mental yang dialami oleh klien menunjukkan perlunya intervensi menyeluruh. Kombinasi dari konseling psikologis, pelatihan manajemen waktu, dan strategi coping dapat membantu klien mengelola gejala secara efektif dan meningkatkan kualitas hidup.
-
-      `;
 
       console.log(gptPrompt)
 
@@ -206,32 +165,33 @@ export class AikeepUpService {
     try {
       const gptPrompt =
         gptPromptTesting +
-        ` \n  ### Data untuk Analisis:
+        `       
+        \n  ### Data untuk Analisis:
       Latar Belakang:
       ${data.background
-        .map(
-          (item) => `
+          .map(
+            (item) => `
         - Kategori: ${item.categoryName}
         ${item.preKuisionerAnswer
-          .map(
-            (dataBackground) => `
+                .map(
+                  (dataBackground) => `
           - Pertanyaan: ${dataBackground.question}
           - Jawaban: ${dataBackground.answer}`,
+                )
+                .join('\n')}
+        `,
           )
           .join('\n')}
-        `,
-        )
-        .join('\n')}
 
       Data:
       ${data.result
-        .map(
-          (item) => `
+          .map(
+            (item) => `
         - Nama: ${item.nameSymtomp}
         - Tingkat: ${item.level}
         - Skor: ${item.score}`,
-        )
-        .join('\n')}`;
+          )
+          .join('\n')}`;
 
       const gptSystem = gptSystemTesting;
 
