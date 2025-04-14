@@ -42,26 +42,40 @@ export class EmailService {
   async sendEmail(to: string, subject: string, htmlContent: string) {
     try {
       const sendSmtpEmail = new brevo.SendSmtpEmail();
-
+  
       sendSmtpEmail.subject = subject;
       sendSmtpEmail.htmlContent = htmlContent;
       sendSmtpEmail.sender = {
         name: 'KeepUp',
         email: 'd.raihan2004@gmail.com',
-      }; // Customize sender
+      };
       sendSmtpEmail.to = [{ email: to, name: to.split('@')[0] }];
       sendSmtpEmail.replyTo = {
         email: 'd.raihan2004@gmail.com',
         name: 'KeepUp',
       };
-
+  
       const response = await this.apiInstance.sendTransacEmail(sendSmtpEmail);
-      // Use NestJS Logger for success logging
-      this.logger.log(`Email sent successfully to ${to}`);
+      this.logger.log(`✅ Email sent successfully to ${to}`);
       return response;
     } catch (error) {
-      this.logger.error(`Failed to send email to ${to}`, error.stack);
+      this.logger.error(`❌ Failed to send email to ${to}`);
+      this.logger.error(`Error Message: ${error.message}`);
+  
+      // Log status code if available
+      if (error.statusCode) {
+        this.logger.error(`Status Code: ${error.statusCode}`);
+      }
+  
+      // Log Brevo API response body if available
+      if (error.response?.body) {
+        this.logger.error('Brevo API Response:', JSON.stringify(error.response.body, null, 2));
+      }
+  
+      // Optional: log full stack for debugging
+      this.logger.error('Stack Trace:', error.stack);
+  
       throw new InternalServerErrorException('Email sending failed');
     }
-  }
+  }  
 }
