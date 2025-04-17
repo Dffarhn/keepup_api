@@ -52,44 +52,47 @@ export class UserAnswerKuisionerService {
       .createQueryBuilder('userAnswerKuisioner')
       .leftJoin('userAnswerKuisioner.userAnswerSubKuisioner', 'userSub')
       .leftJoin('userSub.subKuisioner', 'subKuisioner')
-      .leftJoin('userSub.takeKuisioner', 'takeKuisioner')
-      .leftJoin('userSub.takeKuisioner.user', 'user')
       .leftJoin('userAnswerKuisioner.answer', 'answer')
       .leftJoin('answer.questionId', 'question') // Join with question
-      .select('subKuisioner.title', 'subKuisionerTitle') // Use subKuisioner title
+      .select('subKuisioner.id', 'subKuisionerId')
+      .addSelect('question.id', 'questionId')
       .addSelect('question.question', 'questionText')
+      .addSelect('answer.id', 'answerId')
       .addSelect('answer.answer', 'answerText')
       .addSelect('COUNT(*)', 'count')
-      .groupBy('subKuisioner.title') // Group by subKuisioner title
+      .groupBy('subKuisioner.id')
+      .addGroupBy('question.id')
       .addGroupBy('question.question')
+      .addGroupBy('answer.id')
       .addGroupBy('answer.answer')
-      .orderBy('subKuisioner.title', 'ASC') // Order by subKuisioner title
-      .addOrderBy('question.question', 'ASC')
+      .orderBy('subKuisioner.id', 'ASC')
+      .addOrderBy('question.id', 'ASC')
       .addOrderBy('count', 'DESC')
-      //get the latest from takeKuisioner.createdAt for know the latest of user kuisioner and for id of user
       .getRawMany();
-
+  
     const grouped = result.reduce((acc, item) => {
-      const { subKuisionerTitle, questionText, answerText, count } = item;
-
-      if (!acc[subKuisionerTitle]) {
-        acc[subKuisionerTitle] = {};
+      const { subKuisionerId, questionId, questionText, answerId, answerText, count } = item;
+  
+      if (!acc[subKuisionerId]) {
+        acc[subKuisionerId] = {};
       }
-
-      if (!acc[subKuisionerTitle][questionText]) {
-        acc[subKuisionerTitle][questionText] = {
+  
+      if (!acc[subKuisionerId][questionId]) {
+        acc[subKuisionerId][questionId] = {
+          questionText,
           answers: [],
         };
       }
-
-      acc[subKuisionerTitle][questionText].answers.push({
+  
+      acc[subKuisionerId][questionId].answers.push({
+        answerId,
         answerText,
         count: Number(count),
       });
-
+  
       return acc;
     }, {});
-
+  
     return grouped;
   }
   
