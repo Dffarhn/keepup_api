@@ -1,3 +1,4 @@
+import { AnswerKuisionerGroupAll } from "src/user-answer-kuisioner/dto/group-user-answer-kuisioner";
 import { Level } from "../../user-answer-sub-kuisioner/group/level.enum";
 
 export interface SymptomScore {
@@ -18,4 +19,5 @@ export interface UserSymptomStatistic {
 
 export interface StatistikKuisioner {
     UserSymptomStatistics: UserSymptomStatistic[];
+    AllAnswerFromUser?:AnswerKuisionerGroupAll[]; // All answers from users grouped by questionnaire
 }

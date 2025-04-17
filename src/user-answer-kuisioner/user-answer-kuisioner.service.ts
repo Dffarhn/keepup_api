@@ -7,6 +7,7 @@ import { AnswersService } from '../answers/answers.service';
 import { UserAnswerSubKuisionerService } from '../user-answer-sub-kuisioner/user-answer-sub-kuisioner.service';
 import { CreateUserAnswerKuisionerDto } from './dto/create-user-answer-kuisioner.dto';
 import { UserAnswerSubKuisioner } from '../user-answer-sub-kuisioner/entities/user-answer-sub-kuisioner.entity';
+import { AnswerKuisionerGroupAll } from './dto/group-user-answer-kuisioner';
 
 @Injectable()
 export class UserAnswerKuisionerService {
@@ -19,7 +20,7 @@ export class UserAnswerKuisionerService {
 
     @Inject(forwardRef(() => UserAnswerSubKuisionerService))
     private readonly userAnswerSubKuisionerService: UserAnswerSubKuisionerService,
-  ) { }
+  ) {}
 
   async create(
     idTakeSubKuisioner: string,
@@ -39,7 +40,7 @@ export class UserAnswerKuisionerService {
         answer: answerData,
       });
 
-      score += answerData.score
+      score += answerData.score;
 
       await queryRunner.manager.save(saveData); // Save using queryRunner
     }
@@ -47,56 +48,60 @@ export class UserAnswerKuisionerService {
     return { score: score };
   }
 
-  async getMostSelectedAnswersGroupedBySubKuisioner() {
+  async getMostSelectedAnswersGroupedBySubKuisioner() : Promise<AnswerKuisionerGroupAll[]> {
     const result = await this.userAnswerKuisionerRepository
       .createQueryBuilder('userAnswerKuisioner')
       .leftJoin('userAnswerKuisioner.userAnswerSubKuisioner', 'userSub')
       .leftJoin('userSub.subKuisioner', 'subKuisioner')
+      .leftJoin('userSub.takeKuisioner', 'take_kuisioner')
+      .leftJoinAndSelect('take_kuisioner.user', 'userEminds')
       .leftJoin('userAnswerKuisioner.answer', 'answer')
-      .leftJoin('answer.questionId', 'question') // Join with question
-      .select('subKuisioner.id', 'subKuisionerId')
-      .addSelect('question.id', 'questionId')
+      .leftJoin('answer.questionId', 'question')
+      .where(
+        `take_kuisioner."createdAt" = (
+        SELECT MAX(tk."createdAt")
+        FROM take_kuisioner tk
+        WHERE tk."userId" = take_kuisioner."userId"
+    )`,
+      )
+      .andWhere('take_kuisioner.isFinish = :isFinish', { isFinish: true })
+      .select('subKuisioner.title', 'subKuisionerTitle')
       .addSelect('question.question', 'questionText')
-      .addSelect('answer.id', 'answerId')
       .addSelect('answer.answer', 'answerText')
       .addSelect('COUNT(*)', 'count')
-      .groupBy('subKuisioner.id')
-      .addGroupBy('question.id')
+      .groupBy('subKuisioner.title')
       .addGroupBy('question.question')
-      .addGroupBy('answer.id')
       .addGroupBy('answer.answer')
-      .orderBy('subKuisioner.id', 'ASC')
-      .addOrderBy('question.id', 'ASC')
+      .orderBy('subKuisioner.title', 'ASC')
+      .addOrderBy('question.question', 'ASC')
       .addOrderBy('count', 'DESC')
       .getRawMany();
-  
-    const grouped = result.reduce((acc, item) => {
-      const { subKuisionerId, questionId, questionText, answerId, answerText, count } = item;
-  
-      if (!acc[subKuisionerId]) {
-        acc[subKuisionerId] = {};
-      }
-  
-      if (!acc[subKuisionerId][questionId]) {
-        acc[subKuisionerId][questionId] = {
-          questionText,
-          answers: [],
-        };
-      }
-  
-      acc[subKuisionerId][questionId].answers.push({
-        answerId,
-        answerText,
-        count: Number(count),
-      });
-  
-      return acc;
-    }, {});
-  
+
+    // Format results into structured object
+    const grouped = Object.entries(
+      result.reduce(
+        (acc, { subKuisionerTitle, questionText, answerText, count }) => {
+          if (!acc[subKuisionerTitle]) acc[subKuisionerTitle] = {};
+          if (!acc[subKuisionerTitle][questionText])
+            acc[subKuisionerTitle][questionText] = [];
+          acc[subKuisionerTitle][questionText].push({
+            answerText,
+            count: Number(count),
+          });
+          return acc;
+        },
+        {},
+      ),
+    ).map(([subTitle, questions]) => ({
+      subKuisionerTitle: subTitle,
+      questions: Object.entries(questions).map(([questionText, answers]) => ({
+        questionText,
+        answers,
+      })),
+    }));
+
     return grouped;
   }
-  
-  
 
   findAll() {
     return `This action returns all userAnswerKuisioner`;

@@ -56,45 +56,74 @@ export class AikeepUpService {
 
   async generateSumarize(data: StatistikKuisioner): Promise<string> {
     try {
-
-      console.log(data.UserSymptomStatistics)
+      console.log(data.UserSymptomStatistics);
       const gptPrompt = `
-    Berikut adalah hasil kuisioner yang berisi data terkait gejala-gejala Stress, Depresi, Prokrastinasi, Kecanduan Ponsel, dan Kecemasan yang dialami oleh para responden. Harap berikan ringkasan yang padat dan jelas mengenai temuan utama yang relevan untuk pemangku kepentingan, dengan penekanan pada pola umum gejala dan tingkat keparahannya.
+Berikut adalah hasil kuisioner yang berisi data terkait gejala-gejala Stress, Depresi, Prokrastinasi, Kecemasan, Kecanduan Ponsel, serta kemampuan Regulasi Diri mahasiswa. Mohon berikan ringkasan analisis yang padat dan jelas, ditujukan untuk dibaca oleh dosen atau tenaga ahli psikologi.
+
+Ringkasan ini harus menekankan:
+
+Jumlah total pengisi kuisioner
+
+Gejala dengan tingkat keparahan tinggi yang paling sering muncul di antara responden
+
+Pola umum gejala: apakah ada gejala yang cenderung muncul bersamaan, atau muncul secara merata di seluruh responden
+
+Analisis kemampuan regulasi diri mahasiswa: aspek mana yang tampak lemah atau kurang berkembang (misalnya kontrol emosi, manajemen waktu, kesadaran diri)
+
+Gambaran umum tentang kondisi mahasiswa secara kolektif
+
+Kesimpulan akhir yang dapat membantu pihak kampus merancang dukungan, intervensi, atau tindak lanjut
+
+Harap gunakan bahasa yang profesional, langsung ke inti permasalahan, dan mudah dipahami oleh pemangku kepentingan seperti dosen atau pengelola program bimbingan mahasiswa. Hindari penyebutan nama atau informasi pribadi.
+
+Tujuan dari ringkasan ini adalah untuk memetakan kondisi mental dan regulasi diri mahasiswa, serta memberikan arah atau wawasan yang dapat ditindaklanjuti oleh pihak kampus untuk meningkatkan kesejahteraan dan performa akademik mereka.
 
     Data Kuisioner:
     ${data.UserSymptomStatistics.map(
-        (kuisioner, index) => `
+      (kuisioner, index) => `
     Responden ${index + 1}:
     - Kuisioner: ${kuisioner.kuisionerName}
     - Gejala yang Teramati:
     ${Object.entries(kuisioner.symptoms)
-            .map(
-              ([symptom, details]) => `
+      .map(
+        ([symptom, details]) => `
         -- ${symptom}: 
           --- Tingkat Keparahan: ${details.level}`,
-            )
-            .join('\n')}`,
-      ).join('\n\n')}
+      )
+      .join('\n')}`,
+    ).join('\n\n')}
 
-    Instruksi untuk merangkum:  
-    1. Berikan jumlah pengisi.
-    2. Fokus pada gejala-gejala dengan tingkat keparahan tertinggi yang muncul secara konsisten di antara para responden.
-    3. Identifikasi pola umum gejala dan prevalensinya di seluruh responden.
-    4. Berikan analisis yang jelas tentang temuan utama dan gambaran umum mengenai gejala yang perlu mendapat perhatian lebih.
-    5. Tulis ringkasan dengan bahasa profesional, singkat, dan langsung ke pokok permasalahan, tanpa menyebutkan nama responden atau informasi pribadi.
-    6. Hindari penjelasan yang bertele-tele, cukup fokus pada temuan penting dan kesimpulan yang relevan untuk pengambilan keputusan.
 
-    Ringkasan ini harus disusun dengan cara yang mudah dipahami oleh manajer atau atasan yang memerlukan informasi utama untuk analisis lebih lanjut dan tindakan yang tepat.
-
+    Data Semua Jawaban User:
+    ${data.AllAnswerFromUser.map(
+      (item) => `
+    - Sub Kuisioner: ${item.subKuisionerTitle}
+    ${item.questions
+      .map(
+        (q) => `  - Pertanyaan: ${q.questionText}
+    ${q.answers
+      .map((a) => `    - Jawaban: ${a.answerText} (Dipilih: ${a.count}x)`)
+      .join('\n')}`,
+      )
+      .join('\n')}
+    `,
+    ).join('\n')}
     `;
 
       const gptSystem = `
-        Anda adalah asisten yang terlatih dalam menganalisis dan merangkum data hasil kuisioner. Tujuan Anda adalah memberikan ringkasan yang terstruktur, profesional, dan mudah dipahami terkait gejala-gejala seperti Stress, Depresi, Prokrastinasi, Kecanduan Ponsel, dan Kecemasan. Pastikan rangkuman mencakup:
-        1. Gejala-gejala utama yang perlu menjadi perhatian pemilik kuisioner berdasarkan tingkat keparahan dan frekuensinya.
-        2. Pola gejala yang sering muncul di antara seluruh responden.
-        3. Kesimpulan atau rekomendasi yang dapat membantu pihak yang bertanggung jawab untuk memahami data ini lebih baik.
-        Gunakan bahasa yang sopan, profesional, dan jelas, dengan fokus pada analisis umum dan pola gejala tanpa menyebutkan nama atau informasi spesifik responden.
+Anda adalah seorang Psikolog Profesional dengan pengalaman lebih dari 10 tahun, terlatih dalam menganalisis dan merangkum data kuisioner terkait kesehatan mental dan regulasi diri mahasiswa.
 
+Tugas Anda adalah menyusun ringkasan analisis yang singkat, terstruktur, dan profesional berdasarkan hasil kuisioner yang berisi data mengenai:
+
+Gejala-gejala utama yang berkaitan dengan Stress, Depresi, Prokrastinasi, Kecemasan, dan Kecanduan Ponsel. Soroti gejala dengan tingkat keparahan tertinggi dan frekuensi kemunculan tertinggi di antara responden.
+
+Pola gejala yang konsisten atau berulang yang muncul di sebagian besar mahasiswa.
+
+Kemampuan Regulasi Diri, dengan menyoroti dimensi-dimensi seperti self-monitoring, pengaturan emosi, manajemen waktu, dan goal-setting. Jelaskan apakah mahasiswa menunjukkan kesulitan dalam aspek tertentu yang berpotensi mengganggu perkembangan akademik atau psikososialnya.
+
+Kesimpulan umum, berupa gambaran singkat kondisi psikologis mahasiswa secara kolektif dan kemungkinan intervensi atau dukungan lanjutan yang bisa dilakukan oleh pihak kampus.
+
+Gunakan bahasa yang akurat, sopan, dan profesional, tanpa menyebutkan nama individu atau informasi yang bersifat pribadi. Tulis seolah-olah Anda menyampaikan hasil ini kepada seorang dosen atau manajer program yang membutuhkan informasi ini untuk pengambilan keputusan atau penyusunan kebijakan pendampingan mahasiswa.
         `;
 
       return await this.openAiRequest(gptPrompt, gptSystem);
@@ -106,7 +135,7 @@ export class AikeepUpService {
 
   async generateReport(data: ReportData): Promise<string> {
     try {
-      const gptPrompt =` 
+      const gptPrompt = ` 
       Buatkan laporan psikologi hasil asesmen berupa skrining kesehatan mental mahasiswa.  Skrining terdiri dari data stres, depresi, kecemasan dari skala DASS.  Ditambah data skala prokrastinasi akademik, kecanduan ponsel, dan regulasi diri. Selain itu ada data riwayat kesehatan masalah berat, dukungan keluarga, kondisi finansial, masalah dengan dosen/kampus, orangtua, teman, saudara, riwayat apakah pernah alami masalah berat sehingga datang ke psikolog/psikiater. \n
       Buat laporan dengan bahasa yang mudah dipahami orang awam dengan elemen: deskripsi kondisi mahasiswa, dampaknya bagi mahasiswa, rekomendasi singkat apa yang perlu dilakukan mahasiswa tersebut. Hasil analisis harus berupa teks biasa tanpa format khusus, disusun dalam 5 paragraf.  Gunakan kata sapaan “Kamu”. \n
       Paragraf pertama menjelaskan tingkat stres, depresi, kecemasan berdasarkan skor yang diperoleh.  Tanpa perlu menuliskan skor. lengkapi dengan elaborasi gejala atau simptom yang muncul.  elaborasi apa dampak dari tingkat stres, depresi, kecemasan itu pada konteks klien sebagai mahasiswa. \n
@@ -118,8 +147,8 @@ export class AikeepUpService {
               \n  ### Data untuk Analisis:
             Latar Belakang:
             ${data.background
-          .map(
-            (item) => `
+              .map(
+                (item) => `
               - Kategori: ${item.categoryName}
               ${item.preKuisionerAnswer
                 .map(
@@ -129,21 +158,20 @@ export class AikeepUpService {
                 )
                 .join('\n')}
               `,
-          )
-          .join('\n')}
+              )
+              .join('\n')}
       
             Data:
             ${data.result
-          .map(
-            (item) => `
+              .map(
+                (item) => `
               - Nama: ${item.nameSymtomp}
               - Tingkat: ${item.level}
               - Skor: ${item.score}`,
-          )
-          .join('\n')}`;
+              )
+              .join('\n')}`;
 
-
-      console.log(gptPrompt)
+      console.log(gptPrompt);
 
       const gptSystem =
         'You are a highly skilled psychologist specializing in analyzing patient conditions based on questionnaire responses. Your role is to generate detailed, empathetic, and well-structured psychological analysis reports based on the provided data. Your reports should offer in-depth insights into each symptom, its potential effects, and recommendations for intervention, using a formal and empathetic tone suitable for patients and their needs. Please ensure the output is plain text, with no special formatting such as **bold**.';
@@ -171,29 +199,29 @@ export class AikeepUpService {
         \n  ### Data untuk Analisis:
       Latar Belakang:
       ${data.background
-          .map(
-            (item) => `
+        .map(
+          (item) => `
         - Kategori: ${item.categoryName}
         ${item.preKuisionerAnswer
-                .map(
-                  (dataBackground) => `
+          .map(
+            (dataBackground) => `
           - Pertanyaan: ${dataBackground.question}
           - Jawaban: ${dataBackground.answer}`,
-                )
-                .join('\n')}
-        `,
           )
           .join('\n')}
+        `,
+        )
+        .join('\n')}
 
       Data:
       ${data.result
-          .map(
-            (item) => `
+        .map(
+          (item) => `
         - Nama: ${item.nameSymtomp}
         - Tingkat: ${item.level}
         - Skor: ${item.score}`,
-          )
-          .join('\n')}`;
+        )
+        .join('\n')}`;
 
       const gptSystem = gptSystemTesting;
 

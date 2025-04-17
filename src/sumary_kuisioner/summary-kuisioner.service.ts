@@ -39,9 +39,9 @@ export class SummaryKuisionerService {
         }
 
 
-        let allAnswerUser = await this.userAnswerKuisionerService.getMostSelectedAnswersGroupedBySubKuisioner();
+        // let allAnswerUser = await this.userAnswerKuisionerService.getMostSelectedAnswersGroupedBySubKuisioner();
 
-        console.log(JSON.stringify(allAnswerUser, null, 2));
+        // console.log(JSON.stringify(allAnswerUser, null, 2));
 
         // Check if a summary already exists for the user
         let summary = await this.sumarizeRepository.findOne({
@@ -72,6 +72,8 @@ export class SummaryKuisionerService {
                 user.role.id === ROLES.SUPERADMIN
                     ? (await this.statistikSuperadminService.getAllUserKuisionerStatistik())
                     : (await this.statistikPsychologyService.findClientsUserStatistikForPsychologist(userId));
+
+            dataStatistikKuisioner.AllAnswerFromUser = await this.userAnswerKuisionerService.getMostSelectedAnswersGroupedBySubKuisioner();
             summary.sumarize = await this.aiKeepUpService.generateSumarize(dataStatistikKuisioner); // Generate new summary text
             await this.sumarizeRepository.save(summary);
         }
