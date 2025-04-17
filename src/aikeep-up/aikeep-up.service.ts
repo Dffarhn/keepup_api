@@ -56,6 +56,8 @@ export class AikeepUpService {
 
   async generateSumarize(data: StatistikKuisioner): Promise<string> {
     try {
+
+      console.log(data.UserSymptomStatistics)
       const gptPrompt = `
     Berikut adalah hasil kuisioner yang berisi data terkait gejala-gejala Stress, Depresi, Prokrastinasi, Kecanduan Ponsel, dan Kecemasan yang dialami oleh para responden. Harap berikan ringkasan yang padat dan jelas mengenai temuan utama yang relevan untuk pemangku kepentingan, dengan penekanan pada pola umum gejala dan tingkat keparahannya.
 

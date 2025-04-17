@@ -6,10 +6,11 @@ import { StatistikPsychologyModule } from '../statistik-psychology/statistik-psy
 import { StatistikSuperadminModule } from '../statistik-superadmin/statistik-superadmin.module';
 import { AikeepUpModule } from '../aikeep-up/aikeep-up.module';
 import { User } from '../user/entities/user.entity';
+import { UserAnswerKuisionerModule } from 'src/user-answer-kuisioner/user-answer-kuisioner.module';
 
 @Module({
 
-    imports: [TypeOrmModule.forFeature([SummaryKuisioner,User]), forwardRef(() => StatistikPsychologyModule), forwardRef(() => StatistikSuperadminModule),AikeepUpModule],
+    imports: [TypeOrmModule.forFeature([SummaryKuisioner,User]), forwardRef(() => StatistikPsychologyModule), forwardRef(() => StatistikSuperadminModule),AikeepUpModule,UserAnswerKuisionerModule],
     providers: [SummaryKuisionerService],
     exports: [SummaryKuisionerService]
 

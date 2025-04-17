@@ -73,7 +73,7 @@ export function processKuisionerData(data: TakeKuisioner[]): Record<string, { Ve
 
     return statistik;
 }
-
+   
 export function calculateSymptomScores(takeKuisioner: TakeKuisioner): Record<string, SymptomScore> {
     const symptomScores: Record<string, { score: number; level: Level | null }> = {
         'Depresi': { score: 0, level: null },
@@ -81,6 +81,7 @@ export function calculateSymptomScores(takeKuisioner: TakeKuisioner): Record<str
         'Stress': { score: 0, level: null },
         'Prokrastinasi': { score: 0, level: null },
         'Kecanduan Ponsel': { score: 0, level: null },
+        'Regulasi Diri': { score: 0, level: null },
     };
 
     // Calculate points for each symptom based on hierarchy and level
@@ -109,7 +110,7 @@ export function calculateSymptomScores(takeKuisioner: TakeKuisioner): Record<str
                         score = 0.25;
                         break;
                 }
-            } else if (['Kecanduan Ponsel', 'Prokrastinasi'].includes(symptomName)) {
+            } else if (['Kecanduan Ponsel', 'Prokrastinasi','Regulasi Diri'].includes(symptomName)) {
                 // Secondary symptoms scoring
                 switch (answer.level) {
                     case Level.SUPERHIGH:

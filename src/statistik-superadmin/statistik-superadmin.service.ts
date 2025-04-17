@@ -87,6 +87,8 @@ export class StatistikSuperadminService {
 
         statistik['Kecanduan'] = statistik['Kecanduan Ponsel']
 
+        console.log(statistik)
+
         // Return the result in the desired format
         return {
             StatistikKuisioner: statistik,
@@ -184,6 +186,8 @@ export class StatistikSuperadminService {
 
         // Sort users by total score (descending)
         const sortedUserSymptomData = userSymptomData.sort((a, b) => b.totalScore - a.totalScore);
+
+        // console.dir(sortedUserSymptomData, { depth: null, colors: true });
 
         // Return the sorted data with user name and symptom scores
         return {

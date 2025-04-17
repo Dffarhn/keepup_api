@@ -7,6 +7,7 @@ import { ROLES } from '../roles/group/role.enum';
 import { StatistikSuperadminService } from '../statistik-superadmin/statistik-superadmin.service';
 import { StatistikPsychologyService } from '../statistik-psychology/statistik-psychology.service';
 import { AikeepUpService } from '../aikeep-up/aikeep-up.service';
+import { UserAnswerKuisionerService } from 'src/user-answer-kuisioner/user-answer-kuisioner.service';
 
 @Injectable()
 export class SummaryKuisionerService {
@@ -19,6 +20,9 @@ export class SummaryKuisionerService {
 
         @Inject(StatistikSuperadminService)
         private readonly statistikSuperadminService: StatistikSuperadminService,
+
+        @Inject(UserAnswerKuisionerService)
+        private readonly userAnswerKuisionerService: UserAnswerKuisionerService,
 
         @Inject(StatistikPsychologyService)
         private readonly statistikPsychologyService: StatistikPsychologyService,
@@ -34,6 +38,11 @@ export class SummaryKuisionerService {
             throw new Error('User not found');
         }
 
+
+        let allAnswerUser = await this.userAnswerKuisionerService.getMostSelectedAnswersGroupedBySubKuisioner();
+
+        console.log(JSON.stringify(allAnswerUser, null, 2));
+
         // Check if a summary already exists for the user
         let summary = await this.sumarizeRepository.findOne({
             where: { user: { id: userId } },
@@ -48,9 +57,6 @@ export class SummaryKuisionerService {
             });
             summary = await this.sumarizeRepository.save(summary);
         }
-
-
-
 
         // Fetch the current kuisioner finished count based on user role
         const currentKuisionerFinished =
@@ -71,11 +77,5 @@ export class SummaryKuisionerService {
         }
 
         return summary;
-    }
-
-
-    private async generateSummary(userId: string): Promise<string> {
-        // Mock logic for generating summary text
-        return `Summary for user ${userId} at ${new Date().toISOString()}`;
     }
 }
