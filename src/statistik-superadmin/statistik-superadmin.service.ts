@@ -55,6 +55,7 @@ export class StatistikSuperadminService {
             'Kecemasan': 0,
             'Prokrastinasi': 0,
             'Kecanduan Ponsel': 0,
+            'Regulasi Diri': 0,
         };
 
         // console.log(AllDataKuisioner)
@@ -86,6 +87,7 @@ export class StatistikSuperadminService {
         });
 
         statistik['Kecanduan'] = statistik['Kecanduan Ponsel']
+        statistik['Regulasi'] = statistik['Regulasi Diri']
 
         console.log(statistik)
 

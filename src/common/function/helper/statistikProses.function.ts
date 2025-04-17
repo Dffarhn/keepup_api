@@ -12,6 +12,7 @@ export function processKuisionerData(data: TakeKuisioner[]): Record<string, { Ve
         'Kecemasan': [{ Low: 0, Intermediate: 0, High: 0, VeryHigh: 0 }],
         'Prokrastinasi': [{ VeryLow: 0, Low: 0, Intermediate: 0, High: 0, VeryHigh: 0 }],
         'Kecanduan Ponsel': [{ VeryLow: 0, Low: 0, Intermediate: 0, High: 0, VeryHigh: 0 }],
+        'Regulasi Diri': [{ VeryLow: 0, Low: 0, Intermediate: 0, High: 0, VeryHigh: 0 }],
     };
 
     // Loop through each TakeKuisioner
@@ -44,7 +45,7 @@ export function processKuisionerData(data: TakeKuisioner[]): Record<string, { Ve
                             statistik[symptomName][0].Low++;
                             break;
                     }
-                } else if (['Kecanduan Ponsel', 'Prokrastinasi'].includes(symptomName)) {
+                } else if (['Kecanduan Ponsel', 'Prokrastinasi', 'Regulasi Diri'].includes(symptomName)) {
                     // Secondary symptoms scoring
                     switch (levelName) {
                         case Level.SUPERHIGH:
@@ -70,6 +71,7 @@ export function processKuisionerData(data: TakeKuisioner[]): Record<string, { Ve
 
     // Set alias for 'Kecanduan Ponsel' as 'Kecanduan'
     statistik['Kecanduan'] = statistik['Kecanduan Ponsel'];
+    statistik['Regulasi'] = statistik['Regulasi Diri'];
 
     return statistik;
 }
