@@ -9,7 +9,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
             .fill('#004b93')
             .fillColor('#ffffff')
             .fontSize(20)
-            .text('Personal Report', 50, 15, { align: 'center' })
+            .text('Laporan Assesment Kesehatan Mental', 50, 15, { align: 'center' })
             .fillColor('#000000') // Reset fill color
             .moveDown(2);
 
@@ -17,7 +17,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
         doc
             .fontSize(14)
             .font('Helvetica-Bold')
-            .text(`Name: ${data.user.username}`)
+            .text(`Nama: ${data.user.username}`)
             .text(`NIM: ${data.user.nim}`)
             .text(`Semester: ${(((new Date().getFullYear() - data.user.yearEntry) * 2) + (new Date().getMonth() >= 6 ? 1 : 0))}`)
             .text(`Fakultas: ${data.user.faculty.name||"test"}`)
@@ -28,7 +28,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
         doc
             .fontSize(16)
             .fillColor('#004b93') // Blue color for section headers
-            .text('Background Information', { underline: true })
+            .text('Informasi Latar Belakang', { underline: true })
             .moveDown(1) // Add more space before content
             .fillColor('#000000') // Reset to black for content
             .font('Helvetica');
@@ -68,7 +68,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
         doc
             .fontSize(16)
             .fillColor('#004b93')
-            .text('Assessment Results', { underline: true })
+            .text('Hasil Assessment', { underline: true })
             .moveDown(1)
             .fillColor('#000000')
             .font('Helvetica');
@@ -84,9 +84,9 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
             .rect(tableX, tableY, doc.page.width - 100, 25)
             .fill('#004b93')
             .fillColor("#ffffff")
-            .text('Condition', tableX + 10, tableY + 5, { width: 150 })
+            .text('Kondisi', tableX + 10, tableY + 5, { width: 150 })
             .text('Level', tableX + 180, tableY + 5, { width: 100 })
-            .text('Score', tableX + 300, tableY + 5, { width: 100 })
+            .text('Skor', tableX + 300, tableY + 5, { width: 100 })
             .fillColor('#000000');
 
         // Table Rows
@@ -99,27 +99,35 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
             "very high": "#f5c6cb"
         };
         
-        results.forEach((result) => {
-            const bgColor = levelColors[result.level.toLowerCase()] || "#ffffff"; // Default to white
+        const levelTranslate: { [key: string]: string } = {
+            "very low": "Sangat Rendah",
+            "low": "Rendah",
+            "intermediate": "Sedang",
+            "high": "Tinggi",
+            "very high": "Sangat Tinggi"
+        };
         
-            // Draw row background color BEFORE adding text
+        // Saat menampilkan teks level
+        results.forEach((result) => {
+            const levelLower = result.level.toLowerCase();
+            const bgColor = levelColors[levelLower] || "#ffffff"; // Tetap pakai warna level
+            const translatedLevel = levelTranslate[levelLower] || result.level; // Gunakan terjemahan jika tersedia
+        
             doc
-                .save() // Save current drawing state
+                .save()
                 .rect(tableX, tableY, doc.page.width - 100, 20)
                 .fill(bgColor)
-                .restore(); // Restore previous drawing state (prevents issues with stroke)
+                .restore();
         
-            // Set text color to black for contrast
             doc.fillColor("#000000");
         
-            // Draw text inside the table
             doc
                 .text(result.nameSymtomp, tableX + 10, tableY + 5, { width: 150 })
-                .text(result.level, tableX + 180, tableY + 5, { width: 100 })
+                .text(translatedLevel, tableX + 180, tableY + 5, { width: 100 }) // Ubah ke bahasa Indonesia
                 .text(result.score.toString(), tableX + 300, tableY + 5, { width: 100 });
         
             tableY += 20;
-        });          
+        });      
 
 
         // Report Section
@@ -127,7 +135,7 @@ export class PersonalPDFReportGenerator extends PDFReportGenerator {
             .moveDown(2)
             .fontSize(16)
             .fillColor('#004b93') // Blue color for section headers
-            .text('Analysis Report', 50, doc.y, { underline: true })
+            .text('Hasil Analisis', 50, doc.y, { underline: true })
             .moveDown(1) // Add more space before content
             .fillColor('#000000') // Reset to black for content
             .font('Helvetica');
